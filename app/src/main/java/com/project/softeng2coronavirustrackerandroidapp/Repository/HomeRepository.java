@@ -4,6 +4,7 @@ import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,12 +39,24 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     @Override
     public List<PhStatusModel> fetchPhData() throws IOException {
         List<PhStatusModel> phStatusModelList = new ArrayList<>();
-        HomeApiService coronaVirusLiveApiService = retrofit.create(HomeApiService.class);
-        Call<List<PhStatusModel>> comments = coronaVirusLiveApiService.listOfPhStatus();
+        HomeApiService service = retrofit.create(HomeApiService.class);
+        Call<List<PhStatusModel>> comments = service.listOfPhStatus();
         Response<List<PhStatusModel>> response = comments.execute();
         if (response.body() != null) {
             phStatusModelList.addAll(response.body());
         }
         return phStatusModelList;
+    }
+
+    @Override
+    public WorldTotalModel fetchOverAllCases() throws IOException {
+        WorldTotalModel worldTotalModel = null;
+        HomeApiService service = retrofit.create(HomeApiService.class);
+        Call<WorldTotalModel> comments = service.totalCases();
+        Response<WorldTotalModel> response = comments.execute();
+        if (response.body() != null) {
+            worldTotalModel = response.body();
+        }
+        return worldTotalModel;
     }
 }

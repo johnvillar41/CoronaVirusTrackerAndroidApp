@@ -16,6 +16,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
 import com.project.softeng2coronavirustrackerandroidapp.R;
 import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
@@ -29,7 +30,11 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
 
         presenter = new HomePresenter(this, HomeRepository.getInstance());
         presenter.loadData();
-
+        try {
+            Toast.makeText(HomeFragment.this.getActivity(), HomeRepository.getInstance().fetchOverAllCases().toString(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return root;
     }
 
