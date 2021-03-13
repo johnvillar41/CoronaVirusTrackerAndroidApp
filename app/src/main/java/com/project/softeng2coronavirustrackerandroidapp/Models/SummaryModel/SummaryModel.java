@@ -1,4 +1,4 @@
-package com.project.softeng2coronavirustrackerandroidapp.Models;
+package com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel;
 
 import com.google.gson.annotations.SerializedName;
 

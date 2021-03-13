@@ -14,7 +14,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
 import com.project.softeng2coronavirustrackerandroidapp.R;
@@ -27,6 +27,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private HomePresenter presenter;
     private TextView txtTotalCases, txtTotalDeaths, txtTotalRecovered;
+    private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh, txtActiveCasesPh, txtUniquePh;//TODO: Add active and unique
     private LottieAnimationView lottieAnimationView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         initIds(root);
         presenter = new HomePresenter(this, HomeRepository.getInstance());
         presenter.loadWorldCases();
+        presenter.loadPhCases();
         return root;
     }
 
@@ -43,6 +45,11 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         txtTotalDeaths = root.findViewById(R.id.txtDeathCases);
         txtTotalRecovered = root.findViewById(R.id.txtRecovered);
         lottieAnimationView = root.findViewById(R.id.handwash);
+
+        txtInfectedPh = root.findViewById(R.id.txtTotalCasesPH);
+        txtTestedPh = root.findViewById(R.id.txtTestedPh);
+        txtRecoveredPh = root.findViewById(R.id.txtRecoveredPH);
+        txtDeceasedPh = root.findViewById(R.id.txtDeathCasesPH);
     }
 
     @Override
@@ -70,7 +77,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     }
 
     @Override
-    public void displayTotalCases(WorldTotalModel totalModel) {
+    public void displayTotalWorldCases(WorldTotalModel totalModel) {
         if (getActivity() == null)
             return;
         getActivity().runOnUiThread(new Runnable() {
@@ -95,12 +102,30 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     }
 
     @Override
-    public void displaySummaryCases(SummaryModel summaryModel) {
-        //TODO: Create this
+    public void displayTotalPhCases(PhStatusModel phStatusModel) {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (phStatusModel != null) {
+                    NumberFormat formatter = new DecimalFormat("###,###,###");
+                    txtInfectedPh.setText(String.valueOf(formatter.format(phStatusModel.getInfected())));
+                    txtTestedPh.setText(String.valueOf(formatter.format(phStatusModel.getTested())));
+                    txtRecoveredPh.setText(String.valueOf(formatter.format(phStatusModel.getRecovered())));
+                    txtDeceasedPh.setText(String.valueOf(formatter.format(phStatusModel.getDeceased())));
+                } else {
+                    txtInfectedPh.setText(Constants.SERVICE_UNAVAILABLE);
+                    txtTestedPh.setText(Constants.SERVICE_UNAVAILABLE);
+                    txtRecoveredPh.setText(Constants.SERVICE_UNAVAILABLE);
+                    txtDeceasedPh.setText(Constants.SERVICE_UNAVAILABLE);
+                }
+            }
+        });
     }
 
     @Override
-    public void displayPhStatus(List<PhStatusModel> phData) {
+    public void displaySummaryCases(SummaryModel summaryModel) {
         //TODO: Create this
     }
 }

@@ -3,14 +3,12 @@ package com.project.softeng2coronavirustrackerandroidapp.Repository;
 import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
-import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalCasesModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -39,15 +37,15 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     }
 
     @Override
-    public List<PhStatusModel> fetchPhData() throws IOException {
-        List<PhStatusModel> phStatusModelList = new ArrayList<>();
+    public PhStatusModel fetchPhData() throws IOException {
+        PhStatusModel phStatusModel = null;
         HomeApiService service = retrofit.create(HomeApiService.class);
-        Call<List<PhStatusModel>> call = service.listOfPhStatus();
-        Response<List<PhStatusModel>> response = call.execute();
+        Call<PhStatusModel> call = service.totalCasesPh();
+        Response<PhStatusModel> response = call.execute();
         if (response.body() != null) {
-            phStatusModelList.addAll(response.body());
+            phStatusModel = response.body();
         }
-        return phStatusModelList;
+        return phStatusModel;
     }
 
     @Override
