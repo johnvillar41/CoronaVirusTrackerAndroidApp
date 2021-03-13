@@ -18,12 +18,15 @@ import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
 import com.project.softeng2coronavirustrackerandroidapp.R;
 import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepository;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private HomePresenter presenter;
     private TextView txtTotalCases, txtTotalDeaths, txtTotalRecovered;
     private LottieAnimationView lottieAnimationView;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -38,6 +41,8 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
 
     @Override
     public void displayLoadingScreen() {
+        if(getActivity() == null)
+            return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -48,6 +53,8 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
 
     @Override
     public void hideLoadingScreen() {
+        if (getActivity() == null)
+            return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -58,13 +65,16 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
 
     @Override
     public void displayTotalCases(WorldTotalModel totalModel) {
+        if (getActivity() == null)
+            return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (totalModel != null) {
-                    txtTotalCases.setText(totalModel.getTotalConfirmed());
-                    txtTotalDeaths.setText(totalModel.getTotalDeaths());
-                    txtTotalRecovered.setText(totalModel.getTotalRecovered());
+                    NumberFormat formatter = new DecimalFormat("###,###,###");
+                    txtTotalCases.setText(String.valueOf(formatter.format(totalModel.getTotalConfirmed())));
+                    txtTotalDeaths.setText(String.valueOf(formatter.format(totalModel.getTotalDeaths())));
+                    txtTotalRecovered.setText(String.valueOf(formatter.format(totalModel.getTotalRecovered())));
                 } else {
                     txtTotalCases.setText(Constants.SERVICE_UNAVAILABLE);
                     txtTotalDeaths.setText(Constants.SERVICE_UNAVAILABLE);

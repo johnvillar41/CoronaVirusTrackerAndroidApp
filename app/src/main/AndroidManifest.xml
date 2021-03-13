@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity
             android:name=".Views.Activities.MainActivityActivityView"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
         <activity android:name=".Views.Activities.SplashScreenActivityView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
