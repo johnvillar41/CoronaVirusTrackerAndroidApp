@@ -1,10 +1,9 @@
 package com.project.softeng2coronavirustrackerandroidapp.Presenter;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
-import java.util.List;
 
 public class HomePresenter implements IHomeContract.IHomePresenter {
     private IHomeContract.IHomeView view;
@@ -21,8 +20,10 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             @Override
             public void run() {
                 try {
-                    List<PhStatusModel> phstatusList = repository.fetchPhData();
-                    view.displayPhStatus(phstatusList);
+                    view.displayLoadingScreen();
+                    WorldTotalModel worldTotalModel = repository.fetchWorldCases();
+                    view.displayTotalCases(worldTotalModel);
+                    view.hideLoadingScreen();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

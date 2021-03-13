@@ -3,6 +3,7 @@ package com.project.softeng2coronavirustrackerandroidapp.Repository;
 import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
+import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
@@ -49,7 +50,7 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     }
 
     @Override
-    public WorldTotalModel fetchOverAllCases() throws IOException {
+    public WorldTotalModel fetchWorldCases() throws IOException {
         WorldTotalModel worldTotalModel = null;
         HomeApiService service = retrofit.create(HomeApiService.class);
         Call<WorldTotalModel> comments = service.totalCases();
@@ -58,5 +59,10 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
             worldTotalModel = response.body();
         }
         return worldTotalModel;
+    }
+
+    @Override
+    public GlobalModel fetchGlobalCases() {
+        return null;
     }
 }
