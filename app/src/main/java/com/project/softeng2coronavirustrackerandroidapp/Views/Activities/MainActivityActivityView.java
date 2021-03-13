@@ -14,7 +14,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Views.Fragments.Dashboar
 import com.project.softeng2coronavirustrackerandroidapp.Views.Fragments.HomeFragment;
 import com.project.softeng2coronavirustrackerandroidapp.Views.Fragments.NotificationsFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivityActivityView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView navigationView;
 
     @Override
@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         HideStatusBar.hideStatusBar(this);
         setContentView(R.layout.activity_main);
         navigationView = findViewById(R.id.nav_view);
+
+        Fragment fragmentHome = new HomeFragment();
+        loadFragment(fragmentHome);
         navigationView.setOnNavigationItemSelectedListener(this);
     }
 

@@ -21,7 +21,7 @@ public class SplashScreenActivityView extends AppCompatActivity {
         btnNavigateToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SplashScreenActivityView.this,MainActivity.class);
+                Intent intent = new Intent(SplashScreenActivityView.this, MainActivityActivityView.class);
                 startActivity(intent);
                 SplashScreenActivityView.this.finish();
             }
