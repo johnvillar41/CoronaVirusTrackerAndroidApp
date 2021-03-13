@@ -1,7 +1,8 @@
 package com.project.softeng2coronavirustrackerandroidapp.Interfaces;
 
-import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
@@ -15,11 +16,15 @@ public interface IHomeContract {
 
         void displayTotalCases(WorldTotalModel globalModel);
 
+        void displaySummaryCases(SummaryModel summaryModel);
+
         void displayPhStatus(List<PhStatusModel> phData);
     }
 
     interface IHomePresenter {
-        void loadData();
+        void loadWorldCases();
+
+        void loadSummaryCases();
     }
 
     interface IHomeRepository {
@@ -27,6 +32,8 @@ public interface IHomeContract {
 
         WorldTotalModel fetchWorldCases() throws IOException;
 
-        GlobalModel fetchGlobalCases();
+        GlobalCasesModel fetchGlobalCases();
+
+        SummaryModel fetchSummaryCases() throws IOException;
     }
 }

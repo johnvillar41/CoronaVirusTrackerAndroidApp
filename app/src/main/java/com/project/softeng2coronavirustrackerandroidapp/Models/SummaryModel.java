@@ -10,11 +10,11 @@ public class SummaryModel {
     @SerializedName("Message")
     private String message;
     @SerializedName("Global")
-    private GlobalModel global;
+    private GlobalCasesModel global;
     @SerializedName("Countries")
-    private List<CountriesModel> countries;
+    private List<CountriesCasesModel> countries;
 
-    public SummaryModel(String id, String message, GlobalModel global, List<CountriesModel> countries) {
+    public SummaryModel(String id, String message, GlobalCasesModel global, List<CountriesCasesModel> countries) {
         this.id = id;
         this.message = message;
         this.global = global;
@@ -29,11 +29,11 @@ public class SummaryModel {
         return message;
     }
 
-    public GlobalModel getGlobal() {
+    public GlobalCasesModel getGlobal() {
         return global;
     }
 
-    public List<CountriesModel> getCountries() {
+    public List<CountriesCasesModel> getCountries() {
         return countries;
     }
 }

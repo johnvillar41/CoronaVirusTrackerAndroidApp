@@ -2,15 +2,7 @@ package com.project.softeng2coronavirustrackerandroidapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CountriesModel {
-    @SerializedName("ID")
-    private String id;
-    @SerializedName("Country")
-    private String country;
-    @SerializedName("CountryCode")
-    private String countryCode;
-    @SerializedName("Slug")
-    private String slug;
+public class GlobalCasesModel {
     @SerializedName("NewConfirmed")
     private int newConfirmed;
     @SerializedName("TotalConfirmed")
@@ -26,11 +18,7 @@ public class CountriesModel {
     @SerializedName("Date")
     private String date;
 
-    public CountriesModel(String id, String country, String countryCode, String slug, int newConfirmed, int totalConfirmed, int newDeaths, int totalDeaths, int newRecovered, int totalRecovered, String date) {
-        this.id = id;
-        this.country = country;
-        this.countryCode = countryCode;
-        this.slug = slug;
+    public GlobalCasesModel(int newConfirmed, int totalConfirmed, int newDeaths, int totalDeaths, int newRecovered, int totalRecovered, String date) {
         this.newConfirmed = newConfirmed;
         this.totalConfirmed = totalConfirmed;
         this.newDeaths = newDeaths;
@@ -38,22 +26,6 @@ public class CountriesModel {
         this.newRecovered = newRecovered;
         this.totalRecovered = totalRecovered;
         this.date = date;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public String getSlug() {
-        return slug;
     }
 
     public int getNewConfirmed() {

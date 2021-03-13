@@ -15,7 +15,7 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
     }
 
     @Override
-    public void loadData() {
+    public void loadWorldCases() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -29,5 +29,10 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
                 }
             }
         });thread.start();
+    }
+
+    @Override
+    public void loadSummaryCases() {
+        
     }
 }

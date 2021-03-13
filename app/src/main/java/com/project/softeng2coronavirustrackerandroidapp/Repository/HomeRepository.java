@@ -3,8 +3,9 @@ package com.project.softeng2coronavirustrackerandroidapp.Repository;
 import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
-import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
@@ -41,8 +42,8 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     public List<PhStatusModel> fetchPhData() throws IOException {
         List<PhStatusModel> phStatusModelList = new ArrayList<>();
         HomeApiService service = retrofit.create(HomeApiService.class);
-        Call<List<PhStatusModel>> comments = service.listOfPhStatus();
-        Response<List<PhStatusModel>> response = comments.execute();
+        Call<List<PhStatusModel>> call = service.listOfPhStatus();
+        Response<List<PhStatusModel>> response = call.execute();
         if (response.body() != null) {
             phStatusModelList.addAll(response.body());
         }
@@ -53,8 +54,8 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     public WorldTotalModel fetchWorldCases() throws IOException {
         WorldTotalModel worldTotalModel = null;
         HomeApiService service = retrofit.create(HomeApiService.class);
-        Call<WorldTotalModel> comments = service.totalCases();
-        Response<WorldTotalModel> response = comments.execute();
+        Call<WorldTotalModel> call = service.totalCases();
+        Response<WorldTotalModel> response = call.execute();
         if (response.body() != null) {
             worldTotalModel = response.body();
         }
@@ -62,7 +63,19 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     }
 
     @Override
-    public GlobalModel fetchGlobalCases() {
+    public GlobalCasesModel fetchGlobalCases() {
         return null;
+    }
+
+    @Override
+    public SummaryModel fetchSummaryCases() throws IOException {
+        SummaryModel model = null;
+        HomeApiService service = retrofit.create(HomeApiService.class);
+        Call<SummaryModel> call = service.summaryOfCases();
+        Response<SummaryModel> response = call.execute();
+        if (response.body() != null) {
+            model = response.body();
+        }
+        return model;
     }
 }
