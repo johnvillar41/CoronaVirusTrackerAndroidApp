@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
@@ -22,7 +24,6 @@ import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepositor
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private HomePresenter presenter;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         presenter = new HomePresenter(this, HomeRepository.getInstance());
         presenter.loadWorldCases();
         presenter.loadPhCases();
+        presenter.loadPremiumData();
         return root;
     }
 
@@ -127,5 +129,21 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     @Override
     public void displaySummaryCases(SummaryModel summaryModel) {
         //TODO: Create this
+    }
+
+    @Override
+    public void displayPremiumData(PremiumTravelModel premiumTravelModel) {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (premiumTravelModel != null) {
+                    Toast.makeText(HomeFragment.this.getActivity(), premiumTravelModel.toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

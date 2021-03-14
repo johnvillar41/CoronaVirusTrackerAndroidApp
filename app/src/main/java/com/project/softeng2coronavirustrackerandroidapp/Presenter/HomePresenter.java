@@ -2,6 +2,7 @@ package com.project.softeng2coronavirustrackerandroidapp.Presenter;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
@@ -52,5 +53,20 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
     @Override
     public void loadSummaryCases() {
         
+    }
+
+    @Override
+    public void loadPremiumData() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    PremiumTravelModel premiumTravelModel = repository.fetchPremiumData();
+                    view.displayPremiumData(premiumTravelModel);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });thread.start();
     }
 }
