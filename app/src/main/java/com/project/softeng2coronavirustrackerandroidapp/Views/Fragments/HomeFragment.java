@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
+import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
@@ -24,6 +25,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepositor
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private HomePresenter presenter;
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         presenter.loadWorldCases();
         presenter.loadPhCases();
         presenter.loadPremiumData();
+        presenter.loadPhDailyData();
         return root;
     }
 
@@ -140,6 +143,22 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
             public void run() {
                 if (premiumTravelModel != null) {
                     Toast.makeText(HomeFragment.this.getActivity(), premiumTravelModel.toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels) {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (dailyPhStatusModels != null) {
+                    Toast.makeText(HomeFragment.this.getActivity(), dailyPhStatusModels.toString(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }

@@ -1,5 +1,6 @@
 package com.project.softeng2coronavirustrackerandroidapp.Interfaces;
 
+import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
@@ -7,6 +8,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.Summ
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IHomeContract {
     interface IHomeView {
@@ -21,6 +23,8 @@ public interface IHomeContract {
         void displaySummaryCases(SummaryModel summaryModel);
 
         void displayPremiumData(PremiumTravelModel premiumTravelModel);
+
+        void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels);
     }
 
     interface IHomePresenter {
@@ -31,6 +35,8 @@ public interface IHomeContract {
         void loadSummaryCases();
 
         void loadPremiumData();
+
+        void loadPhDailyData();
     }
 
     interface IHomeRepository {
@@ -43,5 +49,7 @@ public interface IHomeContract {
         SummaryModel fetchSummaryCases() throws IOException;
 
         PremiumTravelModel fetchPremiumData() throws IOException;
+
+        List<DailyPhStatusModel> fetchPhDailyData() throws IOException;
     }
 }

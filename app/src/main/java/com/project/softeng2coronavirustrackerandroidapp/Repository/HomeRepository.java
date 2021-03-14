@@ -3,6 +3,7 @@ package com.project.softeng2coronavirustrackerandroidapp.Repository;
 import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
+import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
@@ -10,6 +11,8 @@ import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.Summ
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -85,9 +88,21 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
         HomeApiService service = retrofit.create(HomeApiService.class);
         Call<PremiumTravelModel> call = service.premiumTravelData(API_KEY_COVID19_API);
         Response<PremiumTravelModel> response = call.execute();
-        if(response.body() != null){
+        if (response.body() != null) {
             premiumTravelModel = response.body();
         }
         return premiumTravelModel;
+    }
+
+    @Override
+    public List<DailyPhStatusModel> fetchPhDailyData() throws IOException {
+        List<DailyPhStatusModel> dailyPhStatusModelList = null;
+        HomeApiService service = retrofit.create(HomeApiService.class);
+        Call<List<DailyPhStatusModel>> call = service.listOfCasesPhDaily();
+        Response<List<DailyPhStatusModel>> response = call.execute();
+        if (response.body() != null) {
+            dailyPhStatusModelList = new ArrayList<>(response.body());
+        }
+        return dailyPhStatusModelList;
     }
 }
