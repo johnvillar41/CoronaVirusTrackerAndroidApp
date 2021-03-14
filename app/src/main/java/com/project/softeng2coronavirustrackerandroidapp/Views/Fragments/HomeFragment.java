@@ -178,7 +178,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 if (dailyPhStatusModels != null) {
                     LinearLayoutManager layoutManager
                             = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
-                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(dailyPhStatusModels);
+                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(HomeFragment.this.getActivity(), dailyPhStatusModels);
                     recyclerViewDailyPhData.setLayoutManager(layoutManager);
                     recyclerViewDailyPhData.setAdapter(adapter);
                     recyclerViewDailyPhData.scheduleLayoutAnimation();
