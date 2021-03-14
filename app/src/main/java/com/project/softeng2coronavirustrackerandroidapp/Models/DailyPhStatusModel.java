@@ -1,31 +1,40 @@
 package com.project.softeng2coronavirustrackerandroidapp.Models;
 
+import android.content.Intent;
+
 import com.google.gson.annotations.SerializedName;
 
 public class DailyPhStatusModel {
     private int infected;
-    private int tested;
+    private String tested;
     private int recovered;
     private int deceased;
     @SerializedName("PUIs")
     private int personUnderInvestigation;
     @SerializedName("PUMs")
     private int personUnderMonitoring;
+    @SerializedName("lastUpdatedAtApify")
+    private String date;
 
-    public DailyPhStatusModel(int infected, int tested, int recovered, int deceased, int personUnderInvestigation, int personUnderMonitoring) {
+    public DailyPhStatusModel(int infected, String tested, int recovered, int deceased, int personUnderInvestigation, int personUnderMonitoring,String date) {
         this.infected = infected;
         this.tested = tested;
         this.recovered = recovered;
         this.deceased = deceased;
         this.personUnderInvestigation = personUnderInvestigation;
         this.personUnderMonitoring = personUnderMonitoring;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public int getInfected() {
         return infected;
     }
 
-    public int getTested() {
+    public String getTested() {
         return tested;
     }
 

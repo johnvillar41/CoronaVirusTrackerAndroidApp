@@ -78,8 +78,10 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             @Override
             public void run() {
                 try {
+                    view.displayProgressBarDailyPhData();
                     List<DailyPhStatusModel> dailyPhStatusModelList = repository.fetchPhDailyData();
                     view.displayPhDailyData(dailyPhStatusModelList);
+                    view.hideProgressBarDailyPhData();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

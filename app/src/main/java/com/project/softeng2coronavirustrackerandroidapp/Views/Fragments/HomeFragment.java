@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.project.softeng2coronavirustrackerandroidapp.Adapters.DailyPhDataRecyclerView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
@@ -32,6 +36,9 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private TextView txtTotalCases, txtTotalDeaths, txtTotalRecovered;
     private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh, txtActiveCasesPh, txtUniquePh;//TODO: Add active and unique
     private LottieAnimationView lottieAnimationView;
+    private RecyclerView recyclerViewDailyPhData;
+    private ProgressBar progressBarDailyPhData;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +62,9 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         txtTestedPh = root.findViewById(R.id.txtTestedPh);
         txtRecoveredPh = root.findViewById(R.id.txtRecoveredPH);
         txtDeceasedPh = root.findViewById(R.id.txtDeathCasesPH);
+
+        recyclerViewDailyPhData = root.findViewById(R.id.recyclerViewDailyPhData);
+        progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
     }
 
     @Override
@@ -158,10 +168,40 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
             @Override
             public void run() {
                 if (dailyPhStatusModels != null) {
-                    Toast.makeText(HomeFragment.this.getActivity(), dailyPhStatusModels.toString(), Toast.LENGTH_SHORT).show();
+                    LinearLayoutManager layoutManager
+                            = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
+                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(
+                            HomeFragment.this.getActivity(), dailyPhStatusModels);
+                    recyclerViewDailyPhData.setLayoutManager(layoutManager);
+                    recyclerViewDailyPhData.setAdapter(adapter);
+                    recyclerViewDailyPhData.scheduleLayoutAnimation();
                 } else {
                     Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    @Override
+    public void displayProgressBarDailyPhData() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarDailyPhData.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void hideProgressBarDailyPhData() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarDailyPhData.setVisibility(View.GONE);
             }
         });
     }

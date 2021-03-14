@@ -25,6 +25,10 @@ public interface IHomeContract {
         void displayPremiumData(PremiumTravelModel premiumTravelModel);
 
         void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels);
+
+        void displayProgressBarDailyPhData();
+
+        void hideProgressBarDailyPhData();
     }
 
     interface IHomePresenter {

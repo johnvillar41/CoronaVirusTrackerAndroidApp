@@ -12,8 +12,11 @@ import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -26,8 +29,12 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     private static final String API_KEY_COVID19_API = "5cf9dfd5-3449-485e-b5ae-70a60e997864";
 
     private HomeRepository() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(100, TimeUnit.SECONDS)
+                .readTimeout(100,TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -102,6 +109,7 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
         Response<List<DailyPhStatusModel>> response = call.execute();
         if (response.body() != null) {
             dailyPhStatusModelList = new ArrayList<>(response.body());
+            Collections.reverse(dailyPhStatusModelList);
         }
         return dailyPhStatusModelList;
     }
