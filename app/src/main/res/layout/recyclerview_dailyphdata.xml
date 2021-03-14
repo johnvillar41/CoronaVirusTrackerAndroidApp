@@ -35,6 +35,24 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/increase_covid" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/decrease"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_below="@+id/txtDate"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@+id/tableLayout"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/decrease_covid" />
 
         <TableLayout
             android:id="@+id/tableLayout"
