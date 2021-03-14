@@ -43,6 +43,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -79,6 +80,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -114,6 +116,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -167,6 +170,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -203,6 +207,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -238,6 +243,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
@@ -273,6 +279,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        app:cardBackgroundColor="#202020"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
