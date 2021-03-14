@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private ProgressBar progressBarDailyPhData;
 
     private View root;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -157,7 +158,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 if (premiumTravelModel != null) {
                     //
                 } else {
-                    Snackbar.make(root,Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
+                    Snackbar.make(root, Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
                             .setAnchorView(R.id.nav_view)
                             .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY))
                             .setTextColor(Color.parseColor(Constants.COLOR_BLACK))
@@ -177,8 +178,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 if (dailyPhStatusModels != null) {
                     LinearLayoutManager layoutManager
                             = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
-                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(
-                            HomeFragment.this.getActivity(), dailyPhStatusModels);
+                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(dailyPhStatusModels);
                     recyclerViewDailyPhData.setLayoutManager(layoutManager);
                     recyclerViewDailyPhData.setAdapter(adapter);
                     recyclerViewDailyPhData.scheduleLayoutAnimation();

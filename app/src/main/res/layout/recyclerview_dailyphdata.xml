@@ -6,6 +6,7 @@
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
     <RelativeLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -16,11 +17,30 @@
             android:text="Datehere"
             android:id="@+id/txtDate"/>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/increase"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_below="@+id/txtDate"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@+id/tableLayout"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/increase_covid" />
+
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_margin="5dp"
             android:layout_below="@+id/txtDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TableRow>
@@ -39,72 +59,22 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Total Number of Tested: "
+                    android:text="Infected Increase: "
                     />
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="result"
-                    android:id="@+id/txtTotalTested"/>
+                    android:id="@+id/txtInfectedIncrease"/>
             </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Total Number of Recovered: "
-                    />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="result"
-                    android:id="@+id/txtTotalRecovered"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Total Number of Deceased: "
-                    />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="result"
-                    android:id="@+id/txtTotalDeceased"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Total Number of PUI's: "
-                    />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="result"
-                    android:id="@+id/txtTotalPuis"/>
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Total Number of PUM's: "
-                    />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="result"
-                    android:id="@+id/txtTotalPums"/>
-            </TableRow>
-
         </TableLayout>
-
-        <View
-            android:layout_margin="5dp"
-            android:layout_below="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#fff"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See More"
+            android:id="@+id/btnSeeMore"
+            android:drawableLeft="@drawable/ic_readmore"
+            android:layout_below="@+id/tableLayout"/>
     </RelativeLayout>
 
 

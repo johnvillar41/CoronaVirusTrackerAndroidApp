@@ -10,7 +10,7 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:padding="10dp"
-        android:id="@+id/progressBar"
+        android:id="@+id/increaseocovid"
         android:layout_width="300sp"
         android:layout_height="300sp"
         android:scaleType="centerCrop"
