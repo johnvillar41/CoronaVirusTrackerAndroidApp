@@ -1,5 +1,6 @@
 package com.project.softeng2coronavirustrackerandroidapp.Views.Fragments;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.project.softeng2coronavirustrackerandroidapp.Adapters.DailyPhDataRecyclerView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
@@ -39,10 +42,10 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private RecyclerView recyclerViewDailyPhData;
     private ProgressBar progressBarDailyPhData;
 
-
+    private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
         initIds(root);
         presenter = new HomePresenter(this, HomeRepository.getInstance());
         presenter.loadWorldCases();
@@ -152,9 +155,13 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
             @Override
             public void run() {
                 if (premiumTravelModel != null) {
-                    Toast.makeText(HomeFragment.this.getActivity(), premiumTravelModel.toString(), Toast.LENGTH_SHORT).show();
+                    //
                 } else {
-                    Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(root,Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
+                            .setAnchorView(R.id.nav_view)
+                            .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY))
+                            .setTextColor(Color.parseColor(Constants.COLOR_BLACK))
+                            .show();
                 }
             }
         });

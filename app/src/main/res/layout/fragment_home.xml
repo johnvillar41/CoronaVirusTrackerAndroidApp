@@ -323,8 +323,9 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
             <ProgressBar
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center"
+                android:indeterminateTint="?attr/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/progressBarDailyPhData"/>
