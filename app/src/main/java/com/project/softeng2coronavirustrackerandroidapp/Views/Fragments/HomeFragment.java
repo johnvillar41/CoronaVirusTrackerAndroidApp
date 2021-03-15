@@ -1,11 +1,13 @@
 package com.project.softeng2coronavirustrackerandroidapp.Views.Fragments;
 
-import android.content.res.ColorStateList;
+import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.project.softeng2coronavirustrackerandroidapp.Adapters.DailyPhDataRecyclerView;
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
@@ -134,7 +135,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               //TODO
+                //TODO
             }
         });
     }
@@ -152,8 +153,53 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 recyclerViewDailyPhData.setLayoutManager(layoutManager);
                 recyclerViewDailyPhData.setAdapter(adapter);
                 recyclerViewDailyPhData.scheduleLayoutAnimation();
+
+                adapter.setOnRecyclerViewSeeMoreClick(new DailyPhDataRecyclerView.OnRecyclerViewClickListener() {
+                    @Override
+                    public void OnClickListener(int position, List<DailyPhStatusModel> dailyPhStatusModels) {
+                        displayPopupDialog(position, dailyPhStatusModels);
+                    }
+                });
             }
         });
+    }
+
+    private void displayPopupDialog(int position, List<DailyPhStatusModel> dailyPhStatusModels) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeFragment.this.getActivity());
+        if (HomeFragment.this.getActivity() == null)
+            return;
+        LayoutInflater inflater = HomeFragment.this.getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.popup_dailyphdata, null);
+        Button btnGotoSource = dialogView.findViewById(R.id.btnGotoSource);
+
+        TextView txtTestedPh, txtRecoveredPh, txtDeceasedPh;
+        txtTestedPh = dialogView.findViewById(R.id.txtTestedPh);
+        txtRecoveredPh = dialogView.findViewById(R.id.txtRecoveredPh);
+        txtDeceasedPh = dialogView.findViewById(R.id.txtDeceasedPh);
+        TextView txtPuis = dialogView.findViewById(R.id.txtPUIPh);
+        TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
+
+        NumberFormat formatter = new DecimalFormat("###,###,###");
+        if (!dailyPhStatusModels.get(position).getTested().equals("N/A")) {
+            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(dailyPhStatusModels.get(position).getTested()))));
+            txtTestedPh.setTextColor(Color.BLUE);
+        }
+        txtRecoveredPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getRecovered())));
+        txtRecoveredPh.setTextColor(Color.GREEN);
+        txtDeceasedPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getDeceased())));
+        txtDeceasedPh.setTextColor(Color.RED);
+        txtPuis.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getPersonUnderInvestigation())));
+        txtPums.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getPersonUnderMonitoring())));
+        btnGotoSource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeFragment.this.getActivity(), "Function not available now", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        builder.show();
     }
 
     @Override
@@ -171,7 +217,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 txtTotalDeaths.setText(Constants.SERVICE_UNAVAILABLE);
                 txtTotalRecovered.setText(Constants.SERVICE_UNAVAILABLE);
 
-                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                Snackbar.make(root, Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
                         .setTextColor(Color.BLACK)
                         .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
             }
@@ -190,7 +236,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 txtRecoveredPh.setText(Constants.SERVICE_UNAVAILABLE);
                 txtDeceasedPh.setText(Constants.SERVICE_UNAVAILABLE);
 
-                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                Snackbar.make(root, Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
                         .setTextColor(Color.BLACK)
                         .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
             }
@@ -204,7 +250,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                Snackbar.make(root, Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
                         .setTextColor(Color.BLACK)
                         .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
             }

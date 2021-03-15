@@ -30,6 +30,15 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
 
     private List<DailyPhStatusModel> list;
     private Context context;
+    private OnRecyclerViewClickListener listener;
+
+    public interface OnRecyclerViewClickListener {
+        void OnClickListener(int position, List<DailyPhStatusModel> dailyPhStatusModels);
+    }
+
+    public void setOnRecyclerViewSeeMoreClick(OnRecyclerViewClickListener listener) {
+        this.listener = listener;
+    }
 
     public DailyPhDataRecyclerView(Context context, List<DailyPhStatusModel> list) {
         this.list = list;
@@ -41,7 +50,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_dailyphdata, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, listener, list);
     }
 
     @Override
@@ -69,48 +78,6 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
 
         holder.txtTotalInfected.setText(String.valueOf(formatter.format(dailyPhStatusModel.getInfected())));
         holder.txtDate.setText(String.valueOf(dailyPhStatusModel.getDate()));
-        holder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayPopupDialog(position);
-            }
-        });
-    }
-
-    private void displayPopupDialog(int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.popup_dailyphdata, null);
-        Button btnGotoSource = dialogView.findViewById(R.id.btnGotoSource);
-
-        TextView txtTestedPh, txtRecoveredPh, txtDeceasedPh;
-        txtTestedPh = dialogView.findViewById(R.id.txtTestedPh);
-        txtRecoveredPh = dialogView.findViewById(R.id.txtRecoveredPh);
-        txtDeceasedPh = dialogView.findViewById(R.id.txtDeceasedPh);
-        TextView txtPuis = dialogView.findViewById(R.id.txtPUIPh);
-        TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
-
-        NumberFormat formatter = new DecimalFormat("###,###,###");
-        if (!list.get(position).getTested().equals("N/A")) {
-            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(list.get(position).getTested()))));
-            txtTestedPh.setTextColor(Color.BLUE);
-        }
-        txtRecoveredPh.setText(String.valueOf(formatter.format(list.get(position).getRecovered())));
-        txtRecoveredPh.setTextColor(Color.GREEN);
-        txtDeceasedPh.setText(String.valueOf(formatter.format(list.get(position).getDeceased())));
-        txtDeceasedPh.setTextColor(Color.RED);
-        txtPuis.setText(String.valueOf(formatter.format(list.get(position).getPersonUnderInvestigation())));
-        txtPums.setText(String.valueOf(formatter.format(list.get(position).getPersonUnderMonitoring())));
-        btnGotoSource.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Function not available now", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setView(dialogView);
-        AlertDialog dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        builder.show();
     }
 
     private int computeAverageOfIncrease() {
@@ -141,7 +108,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
         private LottieAnimationView increaseGif, decreaseGif;
         private Button btnSeeMore;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnRecyclerViewClickListener listener, List<DailyPhStatusModel> list) {
             super(itemView);
             txtTotalInfected = itemView.findViewById(R.id.txtTotalInfected);
             txtDate = itemView.findViewById(R.id.txtDate);
@@ -149,6 +116,14 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
             btnSeeMore = itemView.findViewById(R.id.btnSeeMore);
             txtInfectedIncrease = itemView.findViewById(R.id.txtInfectedIncrease);
             decreaseGif = itemView.findViewById(R.id.decrease);
+
+            btnSeeMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.OnClickListener(position, list);
+                }
+            });
         }
     }
 }
