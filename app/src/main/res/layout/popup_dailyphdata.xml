@@ -76,6 +76,42 @@
                         android:layout_height="wrap_content"
                         android:text="result" />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PUI's: " />
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:id="@+id/txtPUIPh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="result" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PUM's: " />
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:id="@+id/txtPUMPh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="result" />
+                </TableRow>
             </TableLayout>
 
             <Button

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,8 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
         txtTestedPh = dialogView.findViewById(R.id.txtTestedPh);
         txtRecoveredPh = dialogView.findViewById(R.id.txtRecoveredPh);
         txtDeceasedPh = dialogView.findViewById(R.id.txtDeceasedPh);
+        TextView txtPuis = dialogView.findViewById(R.id.txtPUIPh);
+        TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
 
         NumberFormat formatter = new DecimalFormat("###,###,###");
         if (!list.get(position).getTested().equals("N/A")) {
@@ -95,6 +98,8 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
         txtRecoveredPh.setTextColor(Color.GREEN);
         txtDeceasedPh.setText(String.valueOf(formatter.format(list.get(position).getDeceased())));
         txtDeceasedPh.setTextColor(Color.RED);
+        txtPuis.setText(String.valueOf(formatter.format(list.get(position).getPersonUnderInvestigation())));
+        txtPums.setText(String.valueOf(formatter.format(list.get(position).getPersonUnderMonitoring())));
         btnGotoSource.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +107,8 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
             }
         });
         builder.setView(dialogView);
-        builder.create();
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         builder.show();
     }
 

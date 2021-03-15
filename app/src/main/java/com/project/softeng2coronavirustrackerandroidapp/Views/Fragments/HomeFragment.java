@@ -102,20 +102,10 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (totalModel != null) {
-                    NumberFormat formatter = new DecimalFormat("###,###,###");
-                    txtTotalCases.setText(String.valueOf(formatter.format(totalModel.getTotalConfirmed())));
-                    txtTotalDeaths.setText(String.valueOf(formatter.format(totalModel.getTotalDeaths())));
-                    txtTotalRecovered.setText(String.valueOf(formatter.format(totalModel.getTotalRecovered())));
-                } else {
-                    txtTotalCases.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
-                    txtTotalDeaths.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
-                    txtTotalRecovered.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
-
-                    txtTotalCases.setText(Constants.SERVICE_UNAVAILABLE);
-                    txtTotalDeaths.setText(Constants.SERVICE_UNAVAILABLE);
-                    txtTotalRecovered.setText(Constants.SERVICE_UNAVAILABLE);
-                }
+                NumberFormat formatter = new DecimalFormat("###,###,###");
+                txtTotalCases.setText(String.valueOf(formatter.format(totalModel.getTotalConfirmed())));
+                txtTotalDeaths.setText(String.valueOf(formatter.format(totalModel.getTotalDeaths())));
+                txtTotalRecovered.setText(String.valueOf(formatter.format(totalModel.getTotalRecovered())));
             }
         });
     }
@@ -127,18 +117,11 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (phStatusModel != null) {
-                    NumberFormat formatter = new DecimalFormat("###,###,###");
-                    txtInfectedPh.setText(String.valueOf(formatter.format(phStatusModel.getInfected())));
-                    txtTestedPh.setText(String.valueOf(formatter.format(phStatusModel.getTested())));
-                    txtRecoveredPh.setText(String.valueOf(formatter.format(phStatusModel.getRecovered())));
-                    txtDeceasedPh.setText(String.valueOf(formatter.format(phStatusModel.getDeceased())));
-                } else {
-                    txtInfectedPh.setText(Constants.SERVICE_UNAVAILABLE);
-                    txtTestedPh.setText(Constants.SERVICE_UNAVAILABLE);
-                    txtRecoveredPh.setText(Constants.SERVICE_UNAVAILABLE);
-                    txtDeceasedPh.setText(Constants.SERVICE_UNAVAILABLE);
-                }
+                NumberFormat formatter = new DecimalFormat("###,###,###");
+                txtInfectedPh.setText(String.valueOf(formatter.format(phStatusModel.getInfected())));
+                txtTestedPh.setText(String.valueOf(formatter.format(phStatusModel.getTested())));
+                txtRecoveredPh.setText(String.valueOf(formatter.format(phStatusModel.getRecovered())));
+                txtDeceasedPh.setText(String.valueOf(formatter.format(phStatusModel.getDeceased())));
             }
         });
     }
@@ -155,15 +138,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (premiumTravelModel != null) {
-                    //
-                } else {
-                    Snackbar.make(root, Constants.SERVICE_UNAVAILABLE, Snackbar.LENGTH_LONG)
-                            .setAnchorView(R.id.nav_view)
-                            .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY))
-                            .setTextColor(Color.parseColor(Constants.COLOR_BLACK))
-                            .show();
-                }
+               //TODO
             }
         });
     }
@@ -175,16 +150,67 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (dailyPhStatusModels != null) {
-                    LinearLayoutManager layoutManager
-                            = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
-                    DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(HomeFragment.this.getActivity(), dailyPhStatusModels);
-                    recyclerViewDailyPhData.setLayoutManager(layoutManager);
-                    recyclerViewDailyPhData.setAdapter(adapter);
-                    recyclerViewDailyPhData.scheduleLayoutAnimation();
-                } else {
-                    Toast.makeText(HomeFragment.this.getActivity(), Constants.SERVICE_UNAVAILABLE, Toast.LENGTH_SHORT).show();
-                }
+                LinearLayoutManager layoutManager
+                        = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
+                DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(HomeFragment.this.getActivity(), dailyPhStatusModels);
+                recyclerViewDailyPhData.setLayoutManager(layoutManager);
+                recyclerViewDailyPhData.setAdapter(adapter);
+                recyclerViewDailyPhData.scheduleLayoutAnimation();
+            }
+        });
+    }
+
+    @Override
+    public void displayErrorFetchingDataMessageWorldCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                txtTotalCases.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
+                txtTotalDeaths.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
+                txtTotalRecovered.setTextColor(Color.parseColor(Constants.COLOR_BLACK));
+
+                txtTotalCases.setText(Constants.SERVICE_UNAVAILABLE);
+                txtTotalDeaths.setText(Constants.SERVICE_UNAVAILABLE);
+                txtTotalRecovered.setText(Constants.SERVICE_UNAVAILABLE);
+
+                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                        .setTextColor(Color.BLACK)
+                        .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
+            }
+        });
+    }
+
+    @Override
+    public void displayErrorFetchingDataMessageTotalPhCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                txtInfectedPh.setText(Constants.SERVICE_UNAVAILABLE);
+                txtTestedPh.setText(Constants.SERVICE_UNAVAILABLE);
+                txtRecoveredPh.setText(Constants.SERVICE_UNAVAILABLE);
+                txtDeceasedPh.setText(Constants.SERVICE_UNAVAILABLE);
+
+                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                        .setTextColor(Color.BLACK)
+                        .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
+            }
+        });
+    }
+
+    @Override
+    public void displayErrorFetchingPhDailyData() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Snackbar.make(root,Constants.SERVICE_UNAVAILABLE,Snackbar.LENGTH_LONG)
+                        .setTextColor(Color.BLACK)
+                        .setBackgroundTint(Color.parseColor(Constants.COLOR_PRIMARY));
             }
         });
     }

@@ -26,6 +26,12 @@ public interface IHomeContract {
 
         void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels);
 
+        void displayErrorFetchingDataMessageWorldCases();
+
+        void displayErrorFetchingDataMessageTotalPhCases();
+
+        void displayErrorFetchingPhDailyData();
+
         void displayProgressBarDailyPhData();
 
         void hideProgressBarDailyPhData();
