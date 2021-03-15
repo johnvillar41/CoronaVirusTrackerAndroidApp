@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.card.MaterialCardView;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.R;
 

@@ -4,10 +4,8 @@ import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
@@ -31,7 +29,7 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
     private HomeRepository() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100,TimeUnit.SECONDS).build();
+                .readTimeout(100, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(client)
@@ -70,23 +68,6 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
             worldTotalModel = response.body();
         }
         return worldTotalModel;
-    }
-
-    @Override
-    public GlobalCasesModel fetchGlobalCases() {
-        return null;
-    }
-
-    @Override
-    public SummaryModel fetchSummaryCases() throws IOException {
-        SummaryModel model = null;
-        HomeApiService service = retrofit.create(HomeApiService.class);
-        Call<SummaryModel> call = service.summaryOfCases();
-        Response<SummaryModel> response = call.execute();
-        if (response.body() != null) {
-            model = response.body();
-        }
-        return model;
     }
 
     @Override

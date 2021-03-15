@@ -24,7 +24,6 @@ import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
 import com.project.softeng2coronavirustrackerandroidapp.R;
@@ -40,7 +39,9 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh, txtActiveCasesPh, txtUniquePh;//TODO: Add active and unique
     private LottieAnimationView lottieAnimationView;
     private RecyclerView recyclerViewDailyPhData;
+    private DailyPhDataRecyclerView adapter;
     private ProgressBar progressBarDailyPhData;
+    private ProgressBar progressBarSummaryData;
 
     private View root;
 
@@ -127,11 +128,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     }
 
     @Override
-    public void displaySummaryCases(SummaryModel summaryModel) {
-        //TODO: Create this
-    }
-
-    @Override
     public void displayPremiumData(PremiumTravelModel premiumTravelModel) {
         if (getActivity() == null)
             return;
@@ -152,7 +148,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
             public void run() {
                 LinearLayoutManager layoutManager
                         = new LinearLayoutManager(HomeFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
-                DailyPhDataRecyclerView adapter = new DailyPhDataRecyclerView(HomeFragment.this.getActivity(), dailyPhStatusModels);
+                adapter = new DailyPhDataRecyclerView(HomeFragment.this.getActivity(), dailyPhStatusModels);
                 recyclerViewDailyPhData.setLayoutManager(layoutManager);
                 recyclerViewDailyPhData.setAdapter(adapter);
                 recyclerViewDailyPhData.scheduleLayoutAnimation();

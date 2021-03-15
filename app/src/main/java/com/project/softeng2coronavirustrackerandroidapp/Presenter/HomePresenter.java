@@ -59,16 +59,6 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
     }
 
     @Override
-    public void loadSummaryCases() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //TODO:
-            }
-        });thread.start();
-    }
-
-    @Override
     public void loadPremiumData() {
         Thread thread = new Thread(new Runnable() {
             @Override

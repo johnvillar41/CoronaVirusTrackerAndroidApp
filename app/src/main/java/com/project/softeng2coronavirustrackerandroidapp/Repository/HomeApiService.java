@@ -3,7 +3,6 @@ package com.project.softeng2coronavirustrackerandroidapp.Repository;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.util.List;
@@ -18,9 +17,6 @@ public interface HomeApiService {
 
     @GET("world/total")
     Call<WorldTotalModel> totalCases();
-
-    @GET("summary")
-    Call<SummaryModel> summaryOfCases();
 
     @GET("premium/travel/country/philippines?")
     Call<PremiumTravelModel> premiumTravelData(@Query("Key")String apiKey);

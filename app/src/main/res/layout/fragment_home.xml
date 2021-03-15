@@ -4,27 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="15dp"
     tools:context=".Views.Fragments.HomeFragment">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:padding="10dp"
         android:id="@+id/handwash"
-        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:padding="10dp"
         android:scaleType="centerCrop"
-        app:lottie_autoPlay="true"
         android:visibility="invisible"
+        app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/hand_wash_loading"/>
+        app:lottie_rawRes="@raw/hand_wash_loading" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,12 +49,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -77,14 +88,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -113,14 +128,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -149,10 +168,11 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
             </HorizontalScrollView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,12 +189,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -204,14 +228,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -240,14 +268,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -276,14 +308,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -312,16 +348,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
             </HorizontalScrollView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MCL Cases"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -331,12 +369,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -366,14 +408,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -402,14 +448,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -438,14 +488,18 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardBackgroundColor="#202020"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
                         android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp">
+                        android:elevation="0dp"
+                        app:cardBackgroundColor="#202020"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#494848"
+                        app:strokeWidth="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -474,7 +528,7 @@
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
             </HorizontalScrollView>
@@ -485,23 +539,24 @@
                 android:text="Daily Philippine Cases"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
             <ProgressBar
-                android:visibility="visible"
-                android:layout_gravity="center"
-                android:indeterminateTint="?attr/colorPrimary"
+                android:id="@+id/progressBarDailyPhData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progressBarDailyPhData"/>
+                android:layout_gravity="center"
+                android:indeterminateTint="?attr/colorPrimary"
+                android:visibility="visible" />
+
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10sp"
-                android:layoutAnimation="@anim/layout_animation"
                 android:id="@+id/recyclerViewDailyPhData"
                 android:layout_width="match_parent"
-                android:layout_height="500sp"/>
+                android:layout_height="500sp"
+                android:layout_marginTop="10sp"
+                android:layoutAnimation="@anim/layout_animation" />
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>

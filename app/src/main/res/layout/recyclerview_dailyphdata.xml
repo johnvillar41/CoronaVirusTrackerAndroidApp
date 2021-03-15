@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="#202020"
+    android:elevation="0dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#494848"
+    app:strokeWidth="2dp"
+    android:id="@+id/cardViewDailyPhData"
     android:layout_marginBottom="10dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusable="true">
+
     <RelativeLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
@@ -96,4 +103,4 @@
     </RelativeLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
