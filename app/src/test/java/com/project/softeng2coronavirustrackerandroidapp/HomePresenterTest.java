@@ -3,7 +3,10 @@ package com.project.softeng2coronavirustrackerandroidapp;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.LevelModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.NotesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.CountriesCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
@@ -154,27 +157,27 @@ public class HomePresenterTest {
 
         @Override
         public PhStatusModel fetchPhData() {
-            return new PhStatusModel();
+            return new PhStatusModel(0,0,0,0,0,0);
         }
 
         @Override
         public WorldTotalModel fetchWorldCases() {
-            return new WorldTotalModel();
+            return new WorldTotalModel(0,0,0);
         }
 
         @Override
         public GlobalCasesModel fetchGlobalCases() {
-            return new GlobalCasesModel();
+            return new GlobalCasesModel(0,0,0,0,0,0,"DATE");
         }
 
         @Override
         public SummaryModel fetchSummaryCases() {
-            return new SummaryModel();
+            return new SummaryModel("ID","MESSAGE",new GlobalCasesModel(0,0,0,0,0,0,"DATE"),new ArrayList<CountriesCasesModel>());
         }
 
         @Override
         public PremiumTravelModel fetchPremiumData() {
-            return new PremiumTravelModel();
+            return new PremiumTravelModel("RECOMMENDATION",new LevelModel("ID","COUNTRY CODE",1,"DESCRIPTION","DATE"),new NotesModel("ID","COUNTRY CODE","NOTE","DATE"));
         }
 
         @Override

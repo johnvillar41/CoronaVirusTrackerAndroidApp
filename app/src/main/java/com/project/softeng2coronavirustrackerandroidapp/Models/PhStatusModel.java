@@ -19,9 +19,6 @@ public class PhStatusModel {
         this.unique = unique;
     }
 
-    public PhStatusModel() {
-    }
-
     public int getInfected() {
         return infected;
     }
