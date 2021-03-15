@@ -28,6 +28,9 @@ public class GlobalCasesModel {
         this.date = date;
     }
 
+    public GlobalCasesModel() {
+    }
+
     public int getNewConfirmed() {
         return newConfirmed;
     }

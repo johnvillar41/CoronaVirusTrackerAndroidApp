@@ -21,6 +21,9 @@ public class SummaryModel {
         this.countries = countries;
     }
 
+    public SummaryModel() {
+    }
+
     public String getId() {
         return id;
     }

@@ -60,7 +60,12 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
 
     @Override
     public void loadSummaryCases() {
-
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //TODO:
+            }
+        });thread.start();
     }
 
     @Override
@@ -69,6 +74,7 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             @Override
             public void run() {
                 try {
+                    //TODO:
                     PremiumTravelModel premiumTravelModel = repository.fetchPremiumData();
                     view.displayPremiumData(premiumTravelModel);
                 } catch (IOException e) {

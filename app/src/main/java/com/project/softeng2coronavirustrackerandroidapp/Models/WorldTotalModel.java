@@ -16,6 +16,9 @@ public class WorldTotalModel {
         this.totalRecovered = totalRecovered;
     }
 
+    public WorldTotalModel() {
+    }
+
     public int getTotalConfirmed() {
         return totalConfirmed;
     }

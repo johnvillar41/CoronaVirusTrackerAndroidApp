@@ -16,6 +16,9 @@ public class PremiumTravelModel {
         this.notesModel = notesModel;
     }
 
+    public PremiumTravelModel() {
+    }
+
     public String getRecommendation() {
         return recommendation;
     }
