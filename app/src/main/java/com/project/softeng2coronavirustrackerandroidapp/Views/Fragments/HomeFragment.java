@@ -42,7 +42,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private RecyclerView recyclerViewDailyPhData;
     private DailyPhDataRecyclerView adapter;
     private ProgressBar progressBarDailyPhData;
-    private ProgressBar progressBarSummaryData;
 
     private View root;
 
@@ -154,17 +153,17 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 recyclerViewDailyPhData.setAdapter(adapter);
                 recyclerViewDailyPhData.scheduleLayoutAnimation();
 
-                adapter.setOnRecyclerViewSeeMoreClick(new DailyPhDataRecyclerView.OnRecyclerViewClickListener() {
+                adapter.setOnRecyclerViewSeeMoreClickListener(new DailyPhDataRecyclerView.OnRecyclerViewClickListener() {
                     @Override
-                    public void OnClickListener(int position, List<DailyPhStatusModel> dailyPhStatusModels) {
-                        displayPopupDialog(position, dailyPhStatusModels);
+                    public void onClick(DailyPhStatusModel dailyPhStatusModel) {
+                        displayPopupDialog(dailyPhStatusModel);
                     }
                 });
             }
         });
     }
 
-    private void displayPopupDialog(int position, List<DailyPhStatusModel> dailyPhStatusModels) {
+    private void displayPopupDialog(DailyPhStatusModel dailyPhStatusModels) {
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeFragment.this.getActivity());
         if (HomeFragment.this.getActivity() == null)
             return;
@@ -180,16 +179,16 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
 
         NumberFormat formatter = new DecimalFormat("###,###,###");
-        if (!dailyPhStatusModels.get(position).getTested().equals("N/A")) {
-            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(dailyPhStatusModels.get(position).getTested()))));
+        if (!dailyPhStatusModels.getTested().equals("N/A")) {
+            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(dailyPhStatusModels.getTested()))));
             txtTestedPh.setTextColor(Color.BLUE);
         }
-        txtRecoveredPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getRecovered())));
+        txtRecoveredPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getRecovered())));
         txtRecoveredPh.setTextColor(Color.GREEN);
-        txtDeceasedPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getDeceased())));
+        txtDeceasedPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getDeceased())));
         txtDeceasedPh.setTextColor(Color.RED);
-        txtPuis.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getPersonUnderInvestigation())));
-        txtPums.setText(String.valueOf(formatter.format(dailyPhStatusModels.get(position).getPersonUnderMonitoring())));
+        txtPuis.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderInvestigation())));
+        txtPums.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderMonitoring())));
         btnGotoSource.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

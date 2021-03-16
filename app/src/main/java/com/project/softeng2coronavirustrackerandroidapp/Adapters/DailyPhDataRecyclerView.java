@@ -1,29 +1,22 @@
 package com.project.softeng2coronavirustrackerandroidapp.Adapters;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.android.material.card.MaterialCardView;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.R;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
 
 public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRecyclerView.MyViewHolder> {
@@ -33,10 +26,10 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
     private OnRecyclerViewClickListener listener;
 
     public interface OnRecyclerViewClickListener {
-        void OnClickListener(int position, List<DailyPhStatusModel> dailyPhStatusModels);
+        void onClick(DailyPhStatusModel dailyPhStatusModel);
     }
 
-    public void setOnRecyclerViewSeeMoreClick(OnRecyclerViewClickListener listener) {
+    public void setOnRecyclerViewSeeMoreClickListener(OnRecyclerViewClickListener listener) {
         this.listener = listener;
     }
 
@@ -121,7 +114,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    listener.OnClickListener(position, list);
+                    listener.onClick(list.get(position));
                 }
             });
         }
