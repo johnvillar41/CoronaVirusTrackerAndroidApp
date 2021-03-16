@@ -15,11 +15,8 @@ public interface HomeApiService {
     @GET("https://api.apify.com/v2/key-value-stores/lFItbkoNDXKeSWBBA/records/LATEST?disableRedirect=true")
     Call<PhStatusModel> totalCasesPh();
 
-    @GET("world/total")
+    @GET("https://api.covid19api.com/world/total")
     Call<WorldTotalModel> totalCases();
-
-    @GET("premium/travel/country/philippines?")
-    Call<PremiumTravelModel> premiumTravelData(@Query("Key")String apiKey);
 
     @GET("https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1")
     Call<List<DailyPhStatusModel>> listOfCasesPhDaily();

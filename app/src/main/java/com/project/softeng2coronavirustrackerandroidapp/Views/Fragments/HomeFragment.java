@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         presenter = new HomePresenter(this, HomeRepository.getInstance());
         presenter.loadWorldCases();
         presenter.loadPhCases();
-        presenter.loadPremiumData();
         presenter.loadPhDailyData();
         return root;
     }
@@ -116,18 +115,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 txtTestedPh.setText(String.valueOf(formatter.format(phStatusModel.getTested())));
                 txtRecoveredPh.setText(String.valueOf(formatter.format(phStatusModel.getRecovered())));
                 txtDeceasedPh.setText(String.valueOf(formatter.format(phStatusModel.getDeceased())));
-            }
-        });
-    }
-
-    @Override
-    public void displayPremiumData(PremiumTravelModel premiumTravelModel) {
-        if (getActivity() == null)
-            return;
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //TODO
             }
         });
     }

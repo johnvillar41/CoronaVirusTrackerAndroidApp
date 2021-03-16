@@ -23,15 +23,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeRepository implements IHomeContract.IHomeRepository {
     private static HomeRepository instance = null;
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://api.covid19api.com/";
-    private static final String API_KEY_COVID19_API = "5cf9dfd5-3449-485e-b5ae-70a60e997864";
 
     private HomeRepository() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(100, TimeUnit.SECONDS)
                 .readTimeout(100, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -68,18 +65,6 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
             worldTotalModel = response.body();
         }
         return worldTotalModel;
-    }
-
-    @Override
-    public PremiumTravelModel fetchPremiumData() throws IOException {
-        PremiumTravelModel premiumTravelModel = null;
-        HomeApiService service = retrofit.create(HomeApiService.class);
-        Call<PremiumTravelModel> call = service.premiumTravelData(API_KEY_COVID19_API);
-        Response<PremiumTravelModel> response = call.execute();
-        if (response.body() != null) {
-            premiumTravelModel = response.body();
-        }
-        return premiumTravelModel;
     }
 
     @Override

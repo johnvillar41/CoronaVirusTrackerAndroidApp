@@ -3,18 +3,11 @@ package com.project.softeng2coronavirustrackerandroidapp;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.LevelModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.NotesModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.CountriesCasesModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.GlobalCasesModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.SummaryModel.SummaryModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -44,25 +37,6 @@ public class HomePresenterTest {
     @Test
     public void shouldPassDisplayingTotalPhCases() throws InterruptedException {
         presenter.loadPhCases();
-        Thread.sleep(1000);
-        Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
-        Assert.assertTrue(((MockHomeView) view).isDataPassed);
-        Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
-    }
-
-    @Ignore("HomePresenter function not yet defined")
-    @Test
-    public void shouldPassDisplayingSummaryCases() throws InterruptedException {
-        presenter.loadSummaryCases();
-        Thread.sleep(1000);
-        Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
-        Assert.assertTrue(((MockHomeView) view).isDataPassed);
-        Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
-    }
-    @Ignore("HomePresenter function not yet defined")
-    @Test
-    public void shouldPassDisplayingPremiumData() throws InterruptedException {
-        presenter.loadPremiumData();
         Thread.sleep(1000);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
         Assert.assertTrue(((MockHomeView) view).isDataPassed);
@@ -110,18 +84,6 @@ public class HomePresenterTest {
         }
 
         @Override
-        public void displaySummaryCases(SummaryModel summaryModel) {
-            if (summaryModel != null)
-                isDataPassed = true;
-        }
-
-        @Override
-        public void displayPremiumData(PremiumTravelModel premiumTravelModel) {
-            if (premiumTravelModel != null)
-                isDataPassed = true;
-        }
-
-        @Override
         public void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels) {
             if (dailyPhStatusModels != null)
                 isDataPassed = true;
@@ -139,7 +101,7 @@ public class HomePresenterTest {
 
         @Override
         public void displayErrorFetchingPhDailyData() {
-
+            
         }
 
         @Override
@@ -163,21 +125,6 @@ public class HomePresenterTest {
         @Override
         public WorldTotalModel fetchWorldCases() {
             return new WorldTotalModel(0,0,0);
-        }
-
-        @Override
-        public GlobalCasesModel fetchGlobalCases() {
-            return new GlobalCasesModel(0,0,0,0,0,0,"DATE");
-        }
-
-        @Override
-        public SummaryModel fetchSummaryCases() {
-            return new SummaryModel("ID","MESSAGE",new GlobalCasesModel(0,0,0,0,0,0,"DATE"),new ArrayList<CountriesCasesModel>());
-        }
-
-        @Override
-        public PremiumTravelModel fetchPremiumData() {
-            return new PremiumTravelModel("RECOMMENDATION",new LevelModel("ID","COUNTRY CODE",1,"DESCRIPTION","DATE"),new NotesModel("ID","COUNTRY CODE","NOTE","DATE"));
         }
 
         @Override

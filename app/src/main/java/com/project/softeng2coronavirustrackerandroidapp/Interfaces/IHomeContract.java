@@ -18,8 +18,6 @@ public interface IHomeContract {
 
         void displayTotalPhCases(PhStatusModel phStatusModel);
 
-        void displayPremiumData(PremiumTravelModel premiumTravelModel);
-
         void displayPhDailyData(List<DailyPhStatusModel> dailyPhStatusModels);
 
         void displayErrorFetchingDataMessageWorldCases();
@@ -38,8 +36,6 @@ public interface IHomeContract {
 
         void loadPhCases();
 
-        void loadPremiumData();
-
         void loadPhDailyData();
     }
 
@@ -47,8 +43,6 @@ public interface IHomeContract {
         PhStatusModel fetchPhData() throws IOException;
 
         WorldTotalModel fetchWorldCases() throws IOException;
-
-        PremiumTravelModel fetchPremiumData() throws IOException;
 
         List<DailyPhStatusModel> fetchPhDailyData() throws IOException;
     }

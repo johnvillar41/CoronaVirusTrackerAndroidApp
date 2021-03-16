@@ -59,23 +59,6 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
     }
 
     @Override
-    public void loadPremiumData() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //TODO:
-                    PremiumTravelModel premiumTravelModel = repository.fetchPremiumData();
-                    view.displayPremiumData(premiumTravelModel);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.start();
-    }
-
-    @Override
     public void loadPhDailyData() {
         Thread thread = new Thread(new Runnable() {
             @Override
