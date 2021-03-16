@@ -42,15 +42,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
+
     private HomePresenter presenter;
     private TextView txtTotalCases, txtTotalDeaths, txtTotalRecovered;
-    private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh, txtActiveCasesPh, txtUniquePh;//TODO: Add active and unique
+    private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh;
     private LottieAnimationView lottieAnimationView;
     private RecyclerView recyclerViewDailyPhData;
     private DailyPhDataRecyclerView adapter;
     private ProgressBar progressBarDailyPhData;
-    private Button btnSearchByDate;
-
+    private Button btnSearchByDate,btnSeeAllDailyPhData;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,47 +63,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         presenter.loadPremiumData();
         presenter.loadPhDailyData();
         return root;
-    }
-
-    private void initIds(View root) {
-        txtTotalCases = root.findViewById(R.id.txtTotalCases);
-        txtTotalDeaths = root.findViewById(R.id.txtDeathCases);
-        txtTotalRecovered = root.findViewById(R.id.txtRecovered);
-        lottieAnimationView = root.findViewById(R.id.handwash);
-
-        txtInfectedPh = root.findViewById(R.id.txtTotalCasesPH);
-        txtTestedPh = root.findViewById(R.id.txtTestedPh);
-        txtRecoveredPh = root.findViewById(R.id.txtRecoveredPH);
-        txtDeceasedPh = root.findViewById(R.id.txtDeathCasesPH);
-
-        recyclerViewDailyPhData = root.findViewById(R.id.recyclerViewDailyPhData);
-        progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
-        btnSearchByDate = root.findViewById(R.id.btnSearchByDate);
-        btnSearchByDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayCalendar();
-            }
-        });
-    }
-
-    private void displayCalendar() {
-        DatePickerDialog datePicker;
-        final Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        datePicker = new DatePickerDialog(HomeFragment.this.getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                calendar.set(year, month, dayOfMonth);
-                String dateString = sdf.format(calendar.getTime());
-                adapter.getFilter().filter(dateString);
-            }
-        }, year, month, day);
-        datePicker.show();
     }
 
     @Override
@@ -197,44 +156,6 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         });
     }
 
-    private void displayPopupDialog(DailyPhStatusModel dailyPhStatusModels) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(HomeFragment.this.getActivity());
-        if (HomeFragment.this.getActivity() == null)
-            return;
-        LayoutInflater inflater = HomeFragment.this.getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.popup_dailyphdata, null);
-        Button btnGotoSource = dialogView.findViewById(R.id.btnGotoSource);
-
-        TextView txtTestedPh, txtRecoveredPh, txtDeceasedPh;
-        txtTestedPh = dialogView.findViewById(R.id.txtTestedPh);
-        txtRecoveredPh = dialogView.findViewById(R.id.txtRecoveredPh);
-        txtDeceasedPh = dialogView.findViewById(R.id.txtDeceasedPh);
-        TextView txtPuis = dialogView.findViewById(R.id.txtPUIPh);
-        TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
-
-        NumberFormat formatter = new DecimalFormat("###,###,###");
-        if (!dailyPhStatusModels.getTested().equals("N/A")) {
-            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(dailyPhStatusModels.getTested()))));
-            txtTestedPh.setTextColor(Color.BLUE);
-        }
-        txtRecoveredPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getRecovered())));
-        txtRecoveredPh.setTextColor(Color.GREEN);
-        txtDeceasedPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getDeceased())));
-        txtDeceasedPh.setTextColor(Color.RED);
-        txtPuis.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderInvestigation())));
-        txtPums.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderMonitoring())));
-        btnGotoSource.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomeFragment.this.getActivity(), "Function not available now", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setView(dialogView);
-        AlertDialog dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        builder.show();
-    }
-
     @Override
     public void displayErrorFetchingDataMessageWorldCases() {
         if (getActivity() == null)
@@ -312,5 +233,91 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
                 progressBarDailyPhData.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void initIds(View root) {
+        txtTotalCases = root.findViewById(R.id.txtTotalCases);
+        txtTotalDeaths = root.findViewById(R.id.txtDeathCases);
+        txtTotalRecovered = root.findViewById(R.id.txtRecovered);
+        lottieAnimationView = root.findViewById(R.id.handwash);
+
+        txtInfectedPh = root.findViewById(R.id.txtTotalCasesPH);
+        txtTestedPh = root.findViewById(R.id.txtTestedPh);
+        txtRecoveredPh = root.findViewById(R.id.txtRecoveredPH);
+        txtDeceasedPh = root.findViewById(R.id.txtDeathCasesPH);
+
+        recyclerViewDailyPhData = root.findViewById(R.id.recyclerViewDailyPhData);
+        progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
+        btnSearchByDate = root.findViewById(R.id.btnSearchByDate);
+        btnSeeAllDailyPhData = root.findViewById(R.id.btnSeeAllDailyPhData);
+        btnSearchByDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalendar();
+            }
+        });
+        btnSeeAllDailyPhData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.getFilter().filter(null);
+            }
+        });
+    }
+
+    private void displayCalendar() {
+        DatePickerDialog datePicker;
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        datePicker = new DatePickerDialog(HomeFragment.this.getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                calendar.set(year, month, dayOfMonth);
+                String dateString = sdf.format(calendar.getTime());
+                adapter.getFilter().filter(dateString);
+            }
+        }, year, month, day);
+        datePicker.show();
+    }
+
+    private void displayPopupDialog(DailyPhStatusModel dailyPhStatusModels) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeFragment.this.getActivity());
+        if (HomeFragment.this.getActivity() == null)
+            return;
+        LayoutInflater inflater = HomeFragment.this.getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.popup_dailyphdata, null);
+        Button btnGotoSource = dialogView.findViewById(R.id.btnGotoSource);
+
+        TextView txtTestedPh, txtRecoveredPh, txtDeceasedPh;
+        txtTestedPh = dialogView.findViewById(R.id.txtTestedPh);
+        txtRecoveredPh = dialogView.findViewById(R.id.txtRecoveredPh);
+        txtDeceasedPh = dialogView.findViewById(R.id.txtDeceasedPh);
+        TextView txtPuis = dialogView.findViewById(R.id.txtPUIPh);
+        TextView txtPums = dialogView.findViewById(R.id.txtPUMPh);
+
+        NumberFormat formatter = new DecimalFormat("###,###,###");
+        if (!dailyPhStatusModels.getTested().equals("N/A")) {
+            txtTestedPh.setText(String.valueOf(formatter.format(Integer.parseInt(dailyPhStatusModels.getTested()))));
+            txtTestedPh.setTextColor(Color.BLUE);
+        }
+        txtRecoveredPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getRecovered())));
+        txtRecoveredPh.setTextColor(Color.GREEN);
+        txtDeceasedPh.setText(String.valueOf(formatter.format(dailyPhStatusModels.getDeceased())));
+        txtDeceasedPh.setTextColor(Color.RED);
+        txtPuis.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderInvestigation())));
+        txtPums.setText(String.valueOf(formatter.format(dailyPhStatusModels.getPersonUnderMonitoring())));
+        btnGotoSource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeFragment.this.getActivity(), "Function not available now", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        builder.show();
     }
 }

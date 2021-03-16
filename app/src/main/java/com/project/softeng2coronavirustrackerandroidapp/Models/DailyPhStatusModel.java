@@ -1,7 +1,5 @@
 package com.project.softeng2coronavirustrackerandroidapp.Models;
 
-import android.content.Intent;
-
 import com.google.gson.annotations.SerializedName;
 
 public class DailyPhStatusModel {
@@ -17,7 +15,7 @@ public class DailyPhStatusModel {
     private String date;
     private int infectedIncrease;
 
-    public DailyPhStatusModel(int infected, String tested, int recovered, int deceased, int personUnderInvestigation, int personUnderMonitoring,String date) {
+    public DailyPhStatusModel(int infected, String tested, int recovered, int deceased, int personUnderInvestigation, int personUnderMonitoring, String date) {
         this.infected = infected;
         this.tested = tested;
         this.recovered = recovered;

@@ -59,8 +59,8 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
             if (getItem(position).getInfected() < getItem(position - 1).getInfected()) {
                 int increase = getItem(position - 1).getInfected() - getItem(position).getInfected();
                 int averageIncrease = computeAverageOfIncrease();
-                list.get(position).setInfectedIncrease(averageIncrease);
-                if (increase > averageIncrease) {
+                list.get(position).setInfectedIncrease(increase);
+                if (list.get(position).getInfectedIncrease() > averageIncrease) {
                     holder.txtInfectedIncrease.setTextColor(Color.RED);
                     holder.increaseGif.setVisibility(View.VISIBLE);
                     holder.decreaseGif.setVisibility(View.INVISIBLE);
@@ -69,7 +69,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
                     holder.increaseGif.setVisibility(View.INVISIBLE);
                     holder.decreaseGif.setVisibility(View.VISIBLE);
                 }
-                holder.txtInfectedIncrease.setText(String.valueOf(formatter.format(increase)));
+                holder.txtInfectedIncrease.setText(String.valueOf(formatter.format(list.get(position).getInfectedIncrease())));
             }
         } catch (ArrayIndexOutOfBoundsException ignored) {
 
@@ -77,23 +77,6 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
 
         holder.txtTotalInfected.setText(String.valueOf(formatter.format(dailyPhStatusModel.getInfected())));
         holder.txtDate.setText(String.valueOf(dailyPhStatusModel.getDate()));
-    }
-
-    private int computeAverageOfIncrease() {
-        int total = 0;
-        int average = 0;
-        for (int i = 0; i < list.size(); i++) {
-            try {
-                total += (list.get(i - 1).getInfected() - list.get(i).getInfected());
-            } catch (ArrayIndexOutOfBoundsException ignored) {
-            }
-        }
-        average = total / list.size();
-        return average;
-    }
-
-    private DailyPhStatusModel getItem(int position) {
-        return list.get(position);
     }
 
     @Override
@@ -153,8 +136,25 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             list.clear();
-            list.addAll((List<DailyPhStatusModel>)results.values);
+            list.addAll((List<DailyPhStatusModel>) results.values);
             notifyDataSetChanged();
         }
     };
+
+    private int computeAverageOfIncrease() {
+        int total = 0;
+        int average = 0;
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                total += (list.get(i - 1).getInfected() - list.get(i).getInfected());
+            } catch (ArrayIndexOutOfBoundsException ignored) {
+            }
+        }
+        average = total / list.size();
+        return average;
+    }
+
+    private DailyPhStatusModel getItem(int position) {
+        return list.get(position);
+    }
 }
