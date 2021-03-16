@@ -25,10 +25,14 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             public void run() {
                 try {
                     view.displayLoadingScreen();
+                    view.displayProgressBarGlobalCases();
                     WorldTotalModel worldTotalModel = repository.fetchWorldCases();
-                    if (worldTotalModel == null)
+                    if (worldTotalModel == null) {
                         view.displayErrorFetchingDataMessageWorldCases();
+                        return;
+                    }
                     view.displayTotalWorldCases(worldTotalModel);
+                    view.hideProgressBarGlobalCases();
                     view.hideLoadingScreen();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -45,10 +49,14 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             public void run() {
                 try {
                     view.displayLoadingScreen();
+                    view.displayProgressBarPhCases();
                     PhStatusModel phStatusModel = repository.fetchPhData();
-                    if (phStatusModel == null)
+                    if (phStatusModel == null) {
                         view.displayErrorFetchingPhDailyData();
+                        return;
+                    }
                     view.displayTotalPhCases(phStatusModel);
+                    view.hideProgressBarPhCases();
                     view.hideLoadingScreen();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -64,12 +72,16 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             @Override
             public void run() {
                 try {
+                    view.displayLoadingScreen();
                     view.displayProgressBarDailyPhData();
                     List<DailyPhStatusModel> dailyPhStatusModelList = repository.fetchPhDailyData();
-                    if (dailyPhStatusModelList == null)
+                    if (dailyPhStatusModelList == null) {
                         view.displayErrorFetchingPhDailyData();
+                        return;
+                    }
                     view.displayPhDailyData(dailyPhStatusModelList);
                     view.hideProgressBarDailyPhData();
+                    view.hideLoadingScreen();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

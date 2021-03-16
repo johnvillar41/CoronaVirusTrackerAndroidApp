@@ -49,8 +49,9 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private LottieAnimationView lottieAnimationView;
     private RecyclerView recyclerViewDailyPhData;
     private DailyPhDataRecyclerView adapter;
-    private ProgressBar progressBarDailyPhData;
-    private Button btnSearchByDate,btnSeeAllDailyPhData;
+    private ProgressBar progressBarDailyPhData, progressBarGlobalCases, progressBarPhCases, progressBarMclCases, progressBarHomeFragment;
+    private int progressBarCounter = 0;
+    private Button btnSearchByDate, btnSeeAllDailyPhData;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,7 +72,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                lottieAnimationView.setVisibility(View.VISIBLE);
+                progressBarHomeFragment.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -83,7 +84,10 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                lottieAnimationView.setVisibility(View.INVISIBLE);
+                //TODO: CHANGE TO FOUR IF MCL DATA FINISHED
+                if (progressBarCounter == 3) {
+                    progressBarHomeFragment.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
@@ -218,8 +222,89 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
             @Override
             public void run() {
                 progressBarDailyPhData.setVisibility(View.GONE);
+                progressBarCounter++;
             }
         });
+    }
+
+    @Override
+    public void displayProgressBarGlobalCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarGlobalCases.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void hideProgressBarGlobalCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarGlobalCases.setVisibility(View.INVISIBLE);
+                progressBarCounter++;
+            }
+        });
+
+    }
+
+    @Override
+    public void displayProgressBarPhCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarPhCases.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+
+    @Override
+    public void hideProgressBarPhCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarPhCases.setVisibility(View.INVISIBLE);
+                progressBarCounter++;
+            }
+        });
+
+    }
+
+    @Override
+    public void displayProgressBarMclCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarMclCases.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+
+    @Override
+    public void hideProgressBarMclCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBarMclCases.setVisibility(View.INVISIBLE);
+                //TODO ADD PROGRESS BAR COUNTER IF MCL CASES IS FINISHED
+            }
+        });
+
     }
 
     private void initIds(View root) {
@@ -237,6 +322,10 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
         btnSearchByDate = root.findViewById(R.id.btnSearchByDate);
         btnSeeAllDailyPhData = root.findViewById(R.id.btnSeeAllDailyPhData);
+        progressBarGlobalCases = root.findViewById(R.id.progressBarGlobalCases);
+        progressBarPhCases = root.findViewById(R.id.progressBarPhCases);
+        progressBarMclCases = root.findViewById(R.id.progressBarMclCases);
+        progressBarHomeFragment = root.findViewById(R.id.progressBarHome);
         btnSearchByDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,6 +29,18 @@ public interface IHomeContract {
         void displayProgressBarDailyPhData();
 
         void hideProgressBarDailyPhData();
+
+        void displayProgressBarGlobalCases();
+
+        void hideProgressBarGlobalCases();
+
+        void displayProgressBarPhCases();
+
+        void hideProgressBarPhCases();
+
+        void displayProgressBarMclCases();
+
+        void hideProgressBarMclCases();
     }
 
     interface IHomePresenter {

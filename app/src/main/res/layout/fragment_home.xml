@@ -4,8 +4,609 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
     tools:context=".Views.Fragments.HomeFragment">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarHome"
+        android:layout_alignParentTop="true"
+        android:indeterminate="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Global Cases"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:elevation="10dp"
+                        android:id="@+id/progressBarGlobalCases"
+                        android:indeterminate="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="201dp"
+                            android:layout_margin="5dp"
+                            android:elevation="0dp"
+                            app:cardBackgroundColor="#CF6679"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="Total Confirmed cases: "
+                                    android:textColor="#000000"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:id="@+id/txtTotalCases"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Total Cases here"
+                                    android:textColor="#000000"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Death cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtDeathCases"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Death here"
+                                        android:textColor="#000000"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Recovered cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtRecovered"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Recovered here"
+                                        android:textColor="#2FA633"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Philippine Cases"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:elevation="10dp"
+                        android:id="@+id/progressBarPhCases"
+                        android:indeterminate="true" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="10dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Confirmed cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtTotalCasesPH"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Cases here"
+                                        android:textColor="#FF0000"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Tested cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtTestedPh"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Tested here"
+                                        android:textColor="#3E56DA"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Death cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtDeathCasesPH"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Death here"
+                                        android:textColor="#000000"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Recovered cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtRecoveredPH"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Recovered here"
+                                        android:textColor="#2FA633"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MCL Cases"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:elevation="10dp"
+                        android:id="@+id/progressBarMclCases"
+                        android:indeterminate="true" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="10dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Confirmed cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtTotalCasesMCL"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Cases here"
+                                        android:textColor="#FF0000"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Tested cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtTestedMCL"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Tested here"
+                                        android:textColor="#3E56DA"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Death cases: "
+                                        android:textSize="30sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtDeathCasesMCL"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="Total Death here"
+                                        android:textColor="#000000"
+                                        android:textSize="30sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="200sp"
+                                android:layout_margin="5dp"
+                                android:elevation="0dp"
+                                app:cardBackgroundColor="#202020"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="0dp"
+                                app:strokeColor="#494848"
+                                app:strokeWidth="2dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text="Total Recovered cases: "
+                                        android:textSize="30sp" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
+
+
+                    </HorizontalScrollView>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daily Philippine Cases"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSearchByDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_date"
+                    android:text="Date" />
+
+                <Button
+                    android:id="@+id/btnSeeAllDailyPhData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_list_all"
+                    android:text="See all" />
+
+
+                <ProgressBar
+                    android:id="@+id/progressBarDailyPhData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="?attr/colorPrimary"
+                    android:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewDailyPhData"
+                    android:layout_width="match_parent"
+                    android:layout_height="500sp"
+                    android:layout_marginTop="10sp"
+                    android:layoutAnimation="@anim/layout_animation" />
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/handwash"
@@ -18,561 +619,6 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/hand_wash_loading" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Global Cases"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Confirmed cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtTotalCases"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Cases here"
-                                android:textColor="#FF0000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Death cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtDeathCases"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Death here"
-                                android:textColor="#000000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Recovered cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtRecovered"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Recovered here"
-                                android:textColor="#2FA633"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Philippine Cases"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Confirmed cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtTotalCasesPH"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Cases here"
-                                android:textColor="#FF0000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Tested cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtTestedPh"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Tested here"
-                                android:textColor="#3E56DA"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Death cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtDeathCasesPH"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Death here"
-                                android:textColor="#000000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Recovered cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtRecoveredPH"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Recovered here"
-                                android:textColor="#2FA633"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MCL Cases"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Confirmed cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtTotalCasesMCL"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Cases here"
-                                android:textColor="#FF0000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Tested cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtTestedMCL"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Tested here"
-                                android:textColor="#3E56DA"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Death cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtDeathCasesMCL"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Death here"
-                                android:textColor="#000000"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="200sp"
-                        android:layout_margin="5dp"
-                        android:elevation="0dp"
-                        app:cardBackgroundColor="#202020"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#494848"
-                        app:strokeWidth="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Total Recovered cases: "
-                                android:textSize="30sp" />
-
-                            <TextView
-                                android:id="@+id/txtRecoveredMCL"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Total Recovered here"
-                                android:textColor="#2FA633"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Daily Philippine Cases"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnSearchByDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_date"
-                android:text="Date" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See all"
-                android:drawableLeft="@drawable/ic_list_all"
-                android:id="@+id/btnSeeAllDailyPhData"/>
-
-
-            <ProgressBar
-                android:id="@+id/progressBarDailyPhData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminateTint="?attr/colorPrimary"
-                android:visibility="visible" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewDailyPhData"
-                android:layout_width="match_parent"
-                android:layout_height="500sp"
-                android:layout_marginTop="10sp"
-                android:layoutAnimation="@anim/layout_animation" />
-
-        </LinearLayout>
-    </ScrollView>
 
 
 </RelativeLayout>
