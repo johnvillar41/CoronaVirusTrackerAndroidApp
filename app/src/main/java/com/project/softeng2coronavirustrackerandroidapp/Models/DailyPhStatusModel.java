@@ -15,6 +15,7 @@ public class DailyPhStatusModel {
     private int personUnderMonitoring;
     @SerializedName("lastUpdatedAtApify")
     private String date;
+    private int infectedIncrease;
 
     public DailyPhStatusModel(int infected, String tested, int recovered, int deceased, int personUnderInvestigation, int personUnderMonitoring,String date) {
         this.infected = infected;
@@ -24,6 +25,14 @@ public class DailyPhStatusModel {
         this.personUnderInvestigation = personUnderInvestigation;
         this.personUnderMonitoring = personUnderMonitoring;
         this.date = date;
+    }
+
+    public int getInfectedIncrease() {
+        return infectedIncrease;
+    }
+
+    public void setInfectedIncrease(int infectedIncrease) {
+        this.infectedIncrease = infectedIncrease;
     }
 
     public String getDate() {

@@ -1,18 +1,24 @@
 package com.project.softeng2coronavirustrackerandroidapp.Views.Fragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +38,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepositor
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
@@ -42,6 +49,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private RecyclerView recyclerViewDailyPhData;
     private DailyPhDataRecyclerView adapter;
     private ProgressBar progressBarDailyPhData;
+    private Button btnSearchByDate;
 
     private View root;
 
@@ -70,6 +78,32 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
 
         recyclerViewDailyPhData = root.findViewById(R.id.recyclerViewDailyPhData);
         progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
+        btnSearchByDate = root.findViewById(R.id.btnSearchByDate);
+        btnSearchByDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalendar();
+            }
+        });
+    }
+
+    private void displayCalendar() {
+        DatePickerDialog datePicker;
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        datePicker = new DatePickerDialog(HomeFragment.this.getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                calendar.set(year, month, dayOfMonth);
+                String dateString = sdf.format(calendar.getTime());
+                adapter.getFilter().filter(dateString);
+            }
+        }, year, month, day);
+        datePicker.show();
     }
 
     @Override

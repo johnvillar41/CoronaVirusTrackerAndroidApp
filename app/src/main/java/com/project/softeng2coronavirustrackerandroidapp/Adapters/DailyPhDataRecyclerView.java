@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +19,13 @@ import com.project.softeng2coronavirustrackerandroidapp.R;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRecyclerView.MyViewHolder> {
+public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRecyclerView.MyViewHolder> implements Filterable {
 
     private List<DailyPhStatusModel> list;
+    private List<DailyPhStatusModel> listCopy;
     private Context context;
     private OnRecyclerViewClickListener listener;
 
@@ -36,6 +40,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
     public DailyPhDataRecyclerView(Context context, List<DailyPhStatusModel> list) {
         this.list = list;
         this.context = context;
+        this.listCopy = new ArrayList<>(list);
     }
 
     @NonNull
@@ -54,6 +59,7 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
             if (getItem(position).getInfected() < getItem(position - 1).getInfected()) {
                 int increase = getItem(position - 1).getInfected() - getItem(position).getInfected();
                 int averageIncrease = computeAverageOfIncrease();
+                list.get(position).setInfectedIncrease(averageIncrease);
                 if (increase > averageIncrease) {
                     holder.txtInfectedIncrease.setTextColor(Color.RED);
                     holder.increaseGif.setVisibility(View.VISIBLE);
@@ -119,4 +125,36 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
             });
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return listCopyFilter;
+    }
+
+    private Filter listCopyFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<DailyPhStatusModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(listCopy);
+            } else {
+                String filterPattern = constraint.toString().trim();
+                for (DailyPhStatusModel model : listCopy) {
+                    if (model.getDate().contains(filterPattern)) {
+                        filteredList.add(model);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((List<DailyPhStatusModel>)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
