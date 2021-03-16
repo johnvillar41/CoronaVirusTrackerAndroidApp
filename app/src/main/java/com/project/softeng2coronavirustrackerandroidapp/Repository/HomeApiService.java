@@ -15,7 +15,7 @@ public interface HomeApiService {
     @GET("https://api.apify.com/v2/key-value-stores/lFItbkoNDXKeSWBBA/records/LATEST?disableRedirect=true")
     Call<PhStatusModel> totalCasesPh();
 
-    @GET("https://api.covid19api.com/world/total")
+    @GET("world/total")
     Call<WorldTotalModel> totalCases();
 
     @GET("https://api.apify.com/v2/datasets/sFSef5gfYg3soj8mb/items?format=json&clean=1")

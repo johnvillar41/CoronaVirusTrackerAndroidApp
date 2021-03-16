@@ -30,6 +30,7 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
                 .readTimeout(100, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
                 .client(client)
+                .baseUrl("https://api.covid19api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

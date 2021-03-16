@@ -101,7 +101,7 @@ public class HomePresenterTest {
 
         @Override
         public void displayErrorFetchingPhDailyData() {
-            
+
         }
 
         @Override
