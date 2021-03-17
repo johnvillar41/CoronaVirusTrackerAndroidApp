@@ -1,7 +1,7 @@
 package com.project.softeng2coronavirustrackerandroidapp.Interfaces;
 
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.MclTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
@@ -41,6 +41,10 @@ public interface IHomeContract {
         void displayProgressBarMclCases();
 
         void hideProgressBarMclCases();
+
+        void displayErrorFetchingDataMessageMclCases();
+
+        void displayMclCases(MclTotalModel mclTotalModel);
     }
 
     interface IHomePresenter {
@@ -49,6 +53,8 @@ public interface IHomeContract {
         void loadPhCases();
 
         void loadPhDailyData();
+
+        void loadMclData();
     }
 
     interface IHomeRepository {
@@ -57,5 +63,7 @@ public interface IHomeContract {
         WorldTotalModel fetchWorldCases() throws IOException;
 
         List<DailyPhStatusModel> fetchPhDailyData() throws IOException;
+
+        MclTotalModel fetchMclTotalCases() throws IOException;
     }
 }

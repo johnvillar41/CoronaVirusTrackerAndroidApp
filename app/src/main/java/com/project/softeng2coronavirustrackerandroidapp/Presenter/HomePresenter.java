@@ -2,8 +2,8 @@ package com.project.softeng2coronavirustrackerandroidapp.Presenter;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.MclTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
-import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 
 import java.io.IOException;
@@ -88,5 +88,28 @@ public class HomePresenter implements IHomeContract.IHomePresenter {
             }
         });
         thread.start();
+    }
+
+    @Override
+    public void loadMclData() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    view.displayLoadingScreen();
+                    view.displayProgressBarMclCases();
+                    MclTotalModel mclTotalModel = repository.fetchMclTotalCases();
+                    if (mclTotalModel == null) {
+                        view.displayErrorFetchingDataMessageMclCases();
+                        return;
+                    }
+                    view.displayMclCases(mclTotalModel);
+                    view.hideProgressBarMclCases();
+                    view.hideLoadingScreen();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });thread.start();
     }
 }

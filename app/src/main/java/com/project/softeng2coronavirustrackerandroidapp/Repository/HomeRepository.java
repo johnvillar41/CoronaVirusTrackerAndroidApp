@@ -4,6 +4,7 @@ import android.os.StrictMode;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.MclTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
@@ -78,7 +79,7 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
             dailyPhStatusModelList = new ArrayList<>(response.body());
             try {
                 for (int i = 1; i <= dailyPhStatusModelList.size(); i++) {
-                    dailyPhStatusModelList.get(i-1).setInfectedIncrease(dailyPhStatusModelList.get(i).getInfected() - dailyPhStatusModelList.get(i-1).getInfected());
+                    dailyPhStatusModelList.get(i - 1).setInfectedIncrease(dailyPhStatusModelList.get(i).getInfected() - dailyPhStatusModelList.get(i - 1).getInfected());
                 }
             } catch (Exception ignored) {
 
@@ -86,5 +87,17 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
             Collections.reverse(dailyPhStatusModelList);
         }
         return dailyPhStatusModelList;
+    }
+
+    @Override
+    public MclTotalModel fetchMclTotalCases() throws IOException {
+        MclTotalModel mclTotalModel = null;
+        HomeApiService service = retrofit.create(HomeApiService.class);
+        Call<MclTotalModel> call = service.mclTotalCases();
+        Response<MclTotalModel> response = call.execute();
+        if (response != null) {
+            mclTotalModel = response.body();
+        }
+        return mclTotalModel;
     }
 }

@@ -2,6 +2,7 @@ package com.project.softeng2coronavirustrackerandroidapp;
 
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.MclTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Presenter.HomePresenter;
@@ -50,6 +51,17 @@ public class HomePresenterTest {
     @Test
     public void shouldPassDisplayingPhDailyData() throws InterruptedException {
         presenter.loadPhDailyData();
+        Thread.sleep(1000);
+        Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarShowing);
+        Assert.assertTrue(((MockHomeView) view).isDataPassed);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarHidden);
+        Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
+    }
+
+    @Test
+    public void shouldPassDisplayMclTotalData() throws InterruptedException {
+        presenter.loadMclData();
         Thread.sleep(1000);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
         Assert.assertTrue(((MockHomeView) view).isProgressBarShowing);
@@ -149,6 +161,17 @@ public class HomePresenterTest {
         public void hideProgressBarMclCases() {
             isProgressBarHidden = true;
         }
+
+        @Override
+        public void displayErrorFetchingDataMessageMclCases() {
+
+        }
+
+        @Override
+        public void displayMclCases(MclTotalModel mclTotalModel) {
+            if (mclTotalModel != null)
+                isDataPassed = true;
+        }
     }
 
     private static class MockHomeRepository implements IHomeContract.IHomeRepository {
@@ -166,6 +189,11 @@ public class HomePresenterTest {
         @Override
         public List<DailyPhStatusModel> fetchPhDailyData() {
             return new ArrayList<DailyPhStatusModel>();
+        }
+
+        @Override
+        public MclTotalModel fetchMclTotalCases() {
+            return new MclTotalModel(1, 1, 1, 1);
         }
     }
 }

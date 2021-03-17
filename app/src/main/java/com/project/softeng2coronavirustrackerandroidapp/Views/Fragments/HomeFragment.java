@@ -29,6 +29,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Adapters.DailyPhDataRecy
 import com.project.softeng2coronavirustrackerandroidapp.Constants;
 import com.project.softeng2coronavirustrackerandroidapp.Interfaces.IHomeContract;
 import com.project.softeng2coronavirustrackerandroidapp.Models.DailyPhStatusModel;
+import com.project.softeng2coronavirustrackerandroidapp.Models.MclTotalModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PhStatusModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.PremiumTravelModel.PremiumTravelModel;
 import com.project.softeng2coronavirustrackerandroidapp.Models.WorldTotalModel;
@@ -39,6 +40,7 @@ import com.project.softeng2coronavirustrackerandroidapp.Repository.HomeRepositor
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
@@ -46,7 +48,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
     private HomePresenter presenter;
     private TextView txtTotalCases, txtTotalDeaths, txtTotalRecovered;
     private TextView txtInfectedPh, txtTestedPh, txtRecoveredPh, txtDeceasedPh;
-    private LottieAnimationView lottieAnimationView;
+    private TextView txtInfectedMcl, txtTestedMcl, txtRecoveredMcl, txtDeceasedMcl;
     private RecyclerView recyclerViewDailyPhData;
     private DailyPhDataRecyclerView adapter;
     private ProgressBar progressBarDailyPhData, progressBarGlobalCases, progressBarPhCases, progressBarMclCases, progressBarHomeFragment;
@@ -84,8 +86,7 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //TODO: CHANGE TO FOUR IF MCL DATA FINISHED
-                if (progressBarCounter == 3) {
+                if (progressBarCounter == 4) {
                     progressBarHomeFragment.setVisibility(View.INVISIBLE);
                 }
             }
@@ -300,23 +301,55 @@ public class HomeFragment extends Fragment implements IHomeContract.IHomeView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                progressBarCounter++;
                 progressBarMclCases.setVisibility(View.INVISIBLE);
-                //TODO ADD PROGRESS BAR COUNTER IF MCL CASES IS FINISHED
             }
         });
 
+    }
+
+    @Override
+    public void displayErrorFetchingDataMessageMclCases() {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+    }
+
+    @Override
+    public void displayMclCases(MclTotalModel mclTotalModel) {
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                NumberFormat formatter = new DecimalFormat("###,###,###");
+                txtInfectedMcl.setText(String.valueOf(formatter.format(mclTotalModel.getTotalConfirmed())));
+                txtTestedMcl.setText(String.valueOf(formatter.format(mclTotalModel.getTotalTested())));
+                txtRecoveredMcl.setText(String.valueOf(formatter.format(mclTotalModel.getTotalRecovered())));
+                txtDeceasedMcl.setText(String.valueOf(formatter.format(mclTotalModel.getTotalDeaths())));
+            }
+        });
     }
 
     private void initIds(View root) {
         txtTotalCases = root.findViewById(R.id.txtTotalCases);
         txtTotalDeaths = root.findViewById(R.id.txtDeathCases);
         txtTotalRecovered = root.findViewById(R.id.txtRecovered);
-        lottieAnimationView = root.findViewById(R.id.handwash);
 
         txtInfectedPh = root.findViewById(R.id.txtTotalCasesPH);
         txtTestedPh = root.findViewById(R.id.txtTestedPh);
         txtRecoveredPh = root.findViewById(R.id.txtRecoveredPH);
         txtDeceasedPh = root.findViewById(R.id.txtDeathCasesPH);
+
+        txtInfectedMcl = root.findViewById(R.id.txtTotalCasesMCL);
+        txtTestedMcl = root.findViewById(R.id.txtTestedMCL);
+        txtRecoveredMcl = root.findViewById(R.id.txtRecoveredMCL);
+        txtDeceasedMcl = root.findViewById(R.id.txtDeathCasesMCL);
 
         recyclerViewDailyPhData = root.findViewById(R.id.recyclerViewDailyPhData);
         progressBarDailyPhData = root.findViewById(R.id.progressBarDailyPhData);
