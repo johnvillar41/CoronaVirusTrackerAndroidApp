@@ -55,25 +55,21 @@ public class DailyPhDataRecyclerView extends RecyclerView.Adapter<DailyPhDataRec
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         DailyPhStatusModel dailyPhStatusModel = getItem(position);
         NumberFormat formatter = new DecimalFormat("###,###,###");
-        try {
-            if (getItem(position).getInfected() < getItem(position - 1).getInfected()) {
-                int increase = getItem(position - 1).getInfected() - getItem(position).getInfected();
-                int averageIncrease = computeAverageOfIncrease();
-                list.get(position).setInfectedIncrease(increase);
-                if (list.get(position).getInfectedIncrease() > averageIncrease) {
-                    holder.txtInfectedIncrease.setTextColor(Color.RED);
-                    holder.increaseGif.setVisibility(View.VISIBLE);
-                    holder.decreaseGif.setVisibility(View.INVISIBLE);
-                } else {
-                    holder.txtInfectedIncrease.setTextColor(Color.GREEN);
-                    holder.increaseGif.setVisibility(View.INVISIBLE);
-                    holder.decreaseGif.setVisibility(View.VISIBLE);
-                }
-                holder.txtInfectedIncrease.setText(String.valueOf(formatter.format(list.get(position).getInfectedIncrease())));
-            }
-        } catch (ArrayIndexOutOfBoundsException ignored) {
 
+        //int increase = getItem(position - 1).getInfected() - getItem(position).getInfected();
+        int averageIncrease = computeAverageOfIncrease();
+        //list.get(position).setInfectedIncrease(increase);
+        if (list.get(position).getInfectedIncrease() > averageIncrease) {
+            holder.txtInfectedIncrease.setTextColor(Color.RED);
+            holder.increaseGif.setVisibility(View.VISIBLE);
+            holder.decreaseGif.setVisibility(View.INVISIBLE);
+        } else {
+            holder.txtInfectedIncrease.setTextColor(Color.GREEN);
+            holder.increaseGif.setVisibility(View.INVISIBLE);
+            holder.decreaseGif.setVisibility(View.VISIBLE);
         }
+        holder.txtInfectedIncrease.setText(String.valueOf(formatter.format(list.get(position).getInfectedIncrease())));
+
 
         holder.txtTotalInfected.setText(String.valueOf(formatter.format(dailyPhStatusModel.getInfected())));
         holder.txtDate.setText(String.valueOf(dailyPhStatusModel.getDate()));

@@ -76,6 +76,13 @@ public class HomeRepository implements IHomeContract.IHomeRepository {
         Response<List<DailyPhStatusModel>> response = call.execute();
         if (response.body() != null) {
             dailyPhStatusModelList = new ArrayList<>(response.body());
+            try {
+                for (int i = 1; i <= dailyPhStatusModelList.size(); i++) {
+                    dailyPhStatusModelList.get(i-1).setInfectedIncrease(dailyPhStatusModelList.get(i).getInfected() - dailyPhStatusModelList.get(i-1).getInfected());
+                }
+            } catch (Exception ignored) {
+
+            }
             Collections.reverse(dailyPhStatusModelList);
         }
         return dailyPhStatusModelList;
