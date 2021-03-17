@@ -30,7 +30,9 @@ public class HomePresenterTest {
         presenter.loadWorldCases();
         Thread.sleep(1000);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarShowing);
         Assert.assertTrue(((MockHomeView) view).isDataPassed);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarHidden);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
     }
 
@@ -39,7 +41,9 @@ public class HomePresenterTest {
         presenter.loadPhCases();
         Thread.sleep(1000);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarShowing);
         Assert.assertTrue(((MockHomeView) view).isDataPassed);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarHidden);
         Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
     }
 
@@ -47,9 +51,11 @@ public class HomePresenterTest {
     public void shouldPassDisplayingPhDailyData() throws InterruptedException {
         presenter.loadPhDailyData();
         Thread.sleep(1000);
-        Assert.assertTrue(((MockHomeView) view).isProgressBarDailyPhDataShowing);
+        Assert.assertTrue(((MockHomeView) view).isLoadingScreenShowing);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarShowing);
         Assert.assertTrue(((MockHomeView) view).isDataPassed);
-        Assert.assertTrue(((MockHomeView) view).isProgressBarDailyPhDataHidden);
+        Assert.assertTrue(((MockHomeView) view).isProgressBarHidden);
+        Assert.assertTrue(((MockHomeView) view).isLoadingScreenHidden);
     }
 
 
@@ -57,8 +63,8 @@ public class HomePresenterTest {
         boolean isDataPassed = false;
         boolean isLoadingScreenShowing = false;
         boolean isLoadingScreenHidden = false;
-        boolean isProgressBarDailyPhDataShowing = false;
-        boolean isProgressBarDailyPhDataHidden = false;
+        boolean isProgressBarShowing = false;
+        boolean isProgressBarHidden = false;
 
         @Override
         public void displayLoadingScreen() {
@@ -106,12 +112,42 @@ public class HomePresenterTest {
 
         @Override
         public void displayProgressBarDailyPhData() {
-            isProgressBarDailyPhDataShowing = true;
+            isProgressBarShowing = true;
         }
 
         @Override
         public void hideProgressBarDailyPhData() {
-            isProgressBarDailyPhDataHidden = true;
+            isProgressBarHidden = true;
+        }
+
+        @Override
+        public void displayProgressBarGlobalCases() {
+            isProgressBarShowing = true;
+        }
+
+        @Override
+        public void hideProgressBarGlobalCases() {
+            isProgressBarHidden = true;
+        }
+
+        @Override
+        public void displayProgressBarPhCases() {
+            isProgressBarShowing = true;
+        }
+
+        @Override
+        public void hideProgressBarPhCases() {
+            isProgressBarHidden = true;
+        }
+
+        @Override
+        public void displayProgressBarMclCases() {
+            isProgressBarShowing = true;
+        }
+
+        @Override
+        public void hideProgressBarMclCases() {
+            isProgressBarHidden = true;
         }
     }
 
@@ -119,12 +155,12 @@ public class HomePresenterTest {
 
         @Override
         public PhStatusModel fetchPhData() {
-            return new PhStatusModel(0,0,0,0,0,0);
+            return new PhStatusModel(0, 0, 0, 0, 0, 0);
         }
 
         @Override
         public WorldTotalModel fetchWorldCases() {
-            return new WorldTotalModel(0,0,0);
+            return new WorldTotalModel(0, 0, 0);
         }
 
         @Override
